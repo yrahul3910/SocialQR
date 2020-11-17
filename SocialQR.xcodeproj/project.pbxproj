@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		050732D42563539F003F0746 /* SocialQRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732D32563539F003F0746 /* SocialQRApp.swift */; };
+		050732D62563539F003F0746 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732D52563539F003F0746 /* ContentView.swift */; };
+		050732D8256353A1003F0746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050732D7256353A1003F0746 /* Assets.xcassets */; };
+		050732DB256353A1003F0746 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050732DA256353A1003F0746 /* Preview Assets.xcassets */; };
+		050732E6256353A1003F0746 /* SocialQRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732E5256353A1003F0746 /* SocialQRTests.swift */; };
+		050732F1256353A1003F0746 /* SocialQRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732F0256353A1003F0746 /* SocialQRUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		050732E2256353A1003F0746 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050732C82563539F003F0746 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050732CF2563539F003F0746;
+			remoteInfo = SocialQR;
+		};
+		050732ED256353A1003F0746 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050732C82563539F003F0746 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050732CF2563539F003F0746;
+			remoteInfo = SocialQR;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		050732D02563539F003F0746 /* SocialQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		050732D32563539F003F0746 /* SocialQRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialQRApp.swift; sourceTree = "<group>"; };
+		050732D52563539F003F0746 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		050732D7256353A1003F0746 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		050732DA256353A1003F0746 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		050732DC256353A1003F0746 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050732E1256353A1003F0746 /* SocialQRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialQRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		050732E5256353A1003F0746 /* SocialQRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialQRTests.swift; sourceTree = "<group>"; };
+		050732E7256353A1003F0746 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050732EC256353A1003F0746 /* SocialQRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialQRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		050732F0256353A1003F0746 /* SocialQRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialQRUITests.swift; sourceTree = "<group>"; };
+		050732F2256353A1003F0746 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		050732CD2563539F003F0746 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732DE256353A1003F0746 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732E9256353A1003F0746 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		050732C72563539F003F0746 = {
+			isa = PBXGroup;
+			children = (
+				050732D22563539F003F0746 /* SocialQR */,
+				050732E4256353A1003F0746 /* SocialQRTests */,
+				050732EF256353A1003F0746 /* SocialQRUITests */,
+				050732D12563539F003F0746 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		050732D12563539F003F0746 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				050732D02563539F003F0746 /* SocialQR.app */,
+				050732E1256353A1003F0746 /* SocialQRTests.xctest */,
+				050732EC256353A1003F0746 /* SocialQRUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		050732D22563539F003F0746 /* SocialQR */ = {
+			isa = PBXGroup;
+			children = (
+				050732D32563539F003F0746 /* SocialQRApp.swift */,
+				050732D52563539F003F0746 /* ContentView.swift */,
+				050732D7256353A1003F0746 /* Assets.xcassets */,
+				050732DC256353A1003F0746 /* Info.plist */,
+				050732D9256353A1003F0746 /* Preview Content */,
+			);
+			path = SocialQR;
+			sourceTree = "<group>";
+		};
+		050732D9256353A1003F0746 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				050732DA256353A1003F0746 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		050732E4256353A1003F0746 /* SocialQRTests */ = {
+			isa = PBXGroup;
+			children = (
+				050732E5256353A1003F0746 /* SocialQRTests.swift */,
+				050732E7256353A1003F0746 /* Info.plist */,
+			);
+			path = SocialQRTests;
+			sourceTree = "<group>";
+		};
+		050732EF256353A1003F0746 /* SocialQRUITests */ = {
+			isa = PBXGroup;
+			children = (
+				050732F0256353A1003F0746 /* SocialQRUITests.swift */,
+				050732F2256353A1003F0746 /* Info.plist */,
+			);
+			path = SocialQRUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		050732CF2563539F003F0746 /* SocialQR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 050732F5256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQR" */;
+			buildPhases = (
+				050732CC2563539F003F0746 /* Sources */,
+				050732CD2563539F003F0746 /* Frameworks */,
+				050732CE2563539F003F0746 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SocialQR;
+			productName = SocialQR;
+			productReference = 050732D02563539F003F0746 /* SocialQR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		050732E0256353A1003F0746 /* SocialQRTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 050732F8256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQRTests" */;
+			buildPhases = (
+				050732DD256353A1003F0746 /* Sources */,
+				050732DE256353A1003F0746 /* Frameworks */,
+				050732DF256353A1003F0746 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				050732E3256353A1003F0746 /* PBXTargetDependency */,
+			);
+			name = SocialQRTests;
+			productName = SocialQRTests;
+			productReference = 050732E1256353A1003F0746 /* SocialQRTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		050732EB256353A1003F0746 /* SocialQRUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 050732FB256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQRUITests" */;
+			buildPhases = (
+				050732E8256353A1003F0746 /* Sources */,
+				050732E9256353A1003F0746 /* Frameworks */,
+				050732EA256353A1003F0746 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				050732EE256353A1003F0746 /* PBXTargetDependency */,
+			);
+			name = SocialQRUITests;
+			productName = SocialQRUITests;
+			productReference = 050732EC256353A1003F0746 /* SocialQRUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		050732C82563539F003F0746 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					050732CF2563539F003F0746 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					050732E0256353A1003F0746 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 050732CF2563539F003F0746;
+					};
+					050732EB256353A1003F0746 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 050732CF2563539F003F0746;
+					};
+				};
+			};
+			buildConfigurationList = 050732CB2563539F003F0746 /* Build configuration list for PBXProject "SocialQR" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 050732C72563539F003F0746;
+			productRefGroup = 050732D12563539F003F0746 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				050732CF2563539F003F0746 /* SocialQR */,
+				050732E0256353A1003F0746 /* SocialQRTests */,
+				050732EB256353A1003F0746 /* SocialQRUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		050732CE2563539F003F0746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050732DB256353A1003F0746 /* Preview Assets.xcassets in Resources */,
+				050732D8256353A1003F0746 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732DF256353A1003F0746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732EA256353A1003F0746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		050732CC2563539F003F0746 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050732D62563539F003F0746 /* ContentView.swift in Sources */,
+				050732D42563539F003F0746 /* SocialQRApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732DD256353A1003F0746 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050732E6256353A1003F0746 /* SocialQRTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050732E8256353A1003F0746 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050732F1256353A1003F0746 /* SocialQRUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		050732E3256353A1003F0746 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050732CF2563539F003F0746 /* SocialQR */;
+			targetProxy = 050732E2256353A1003F0746 /* PBXContainerItemProxy */;
+		};
+		050732EE256353A1003F0746 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050732CF2563539F003F0746 /* SocialQR */;
+			targetProxy = 050732ED256353A1003F0746 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		050732F3256353A1003F0746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		050732F4256353A1003F0746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		050732F6256353A1003F0746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SocialQR/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SocialQR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		050732F7256353A1003F0746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SocialQR/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SocialQR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		050732F9256353A1003F0746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SocialQRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SocialQR.app/SocialQR";
+			};
+			name = Debug;
+		};
+		050732FA256353A1003F0746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SocialQRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SocialQR.app/SocialQR";
+			};
+			name = Release;
+		};
+		050732FC256353A1003F0746 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SocialQRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SocialQR;
+			};
+			name = Debug;
+		};
+		050732FD256353A1003F0746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SocialQRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SocialQR;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		050732CB2563539F003F0746 /* Build configuration list for PBXProject "SocialQR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050732F3256353A1003F0746 /* Debug */,
+				050732F4256353A1003F0746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		050732F5256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050732F6256353A1003F0746 /* Debug */,
+				050732F7256353A1003F0746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		050732F8256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQRTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050732F9256353A1003F0746 /* Debug */,
+				050732FA256353A1003F0746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		050732FB256353A1003F0746 /* Build configuration list for PBXNativeTarget "SocialQRUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050732FC256353A1003F0746 /* Debug */,
+				050732FD256353A1003F0746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 050732C82563539F003F0746 /* Project object */;
+}
