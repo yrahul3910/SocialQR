@@ -11,7 +11,7 @@ import SwiftUI
 struct SocialQRApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProfileView()
         }
     }
 }
