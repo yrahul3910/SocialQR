@@ -31,6 +31,7 @@ struct FriendView: View {
                         .foregroundColor(.green)
                 }
             }
+            Spacer()
         }
         Spacer()
     }
