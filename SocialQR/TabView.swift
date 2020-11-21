@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import MultipeerKit
+
+struct CodablePayload: Codable, Hashable {
+    let message: String
+}
 
 struct MainTabView: View {
     private let friends: FriendList
     private let decoder = JSONDecoder()
+    private var transceiver = MultipeerTransceiver()
     
     init() {
         /* Fetch the user friend list from the stored data. If it does
@@ -33,6 +39,11 @@ struct MainTabView: View {
                     Image(systemName: "person.circle")
                     Text("Profile")
                 }
+        }.onAppear() {
+            transceiver.resume()
+            transceiver.availablePeersDidChange = { peer in
+                print("\n\nPeer \(peer.description) changed.\n\n")
+            }
         }
     }
 }

@@ -21,6 +21,7 @@
 		0546C21C2563A7B800E85E9D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C21B2563A7B800E85E9D /* Friend.swift */; };
 		0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C2202563ABBE00E85E9D /* FriendView.swift */; };
 		056FA0C62564D1A80016B269 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 056FA0C52564D1A80016B269 /* CodeScanner */; };
+		059155242568D9E4004E7E46 /* MultipeerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 059155232568D9E4004E7E46 /* MultipeerKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				056FA0C62564D1A80016B269 /* CodeScanner in Frameworks */,
+				059155242568D9E4004E7E46 /* MultipeerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,7 @@
 			name = SocialQR;
 			packageProductDependencies = (
 				056FA0C52564D1A80016B269 /* CodeScanner */,
+				059155232568D9E4004E7E46 /* MultipeerKit */,
 			);
 			productName = SocialQR;
 			productReference = 050732D02563539F003F0746 /* SocialQR.app */;
@@ -223,6 +226,7 @@
 				TargetAttributes = {
 					050732CF2563539F003F0746 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 					050732E0256353A1003F0746 = {
 						CreatedOnToolsVersion = 12.2;
@@ -245,6 +249,7 @@
 			mainGroup = 050732C72563539F003F0746;
 			packageReferences = (
 				056FA0C42564D1A80016B269 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				059155222568D9E4004E7E46 /* XCRemoteSwiftPackageReference "MultipeerKit" */,
 			);
 			productRefGroup = 050732D12563539F003F0746 /* Products */;
 			projectDirPath = "";
@@ -453,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialQR/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -462,8 +468,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -474,6 +484,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialQR/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -483,8 +494,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SocialQR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -620,6 +634,14 @@
 				minimumVersion = 1.0.7;
 			};
 		};
+		059155222568D9E4004E7E46 /* XCRemoteSwiftPackageReference "MultipeerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/insidegui/MultipeerKit";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -627,6 +649,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 056FA0C42564D1A80016B269 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		059155232568D9E4004E7E46 /* MultipeerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 059155222568D9E4004E7E46 /* XCRemoteSwiftPackageReference "MultipeerKit" */;
+			productName = MultipeerKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
