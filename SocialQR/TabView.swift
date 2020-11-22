@@ -12,10 +12,36 @@ struct CodablePayload: Codable, Hashable {
     let message: String
 }
 
+struct Peer {
+    let name: String
+    let id: String
+}
+
+class PeerList: ObservableObject {
+    @Published var peers: [Peer]
+    
+    init() {
+        self.peers = []
+    }
+    
+    func addPeer(name peerName: String, id peerId: String) {
+        self.peers.append(Peer(name: peerName, id: peerId))
+    }
+    
+    func removePeer(id peerId: String) {
+        self.peers.remove(
+            at: self.peers.firstIndex(where: { peer in
+                peer.id == peerId
+            })!
+        )
+    }
+}
+
 struct MainTabView: View {
     private let friends: FriendList
     private let decoder = JSONDecoder()
     private var transceiver = MultipeerTransceiver()
+    @State var peers = PeerList()
     
     init() {
         /* Fetch the user friend list from the stored data. If it does
@@ -28,6 +54,12 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
+            NearbyView(peerList: peers)
+                .tabItem {
+                    Image(systemName: "dot.radiowaves.left.and.right")
+                    Text("Near Me")
+                }
+            
             FriendsView(friends: self.friends)
                 .tabItem {
                     Image(systemName: "person.3.fill")
@@ -41,8 +73,11 @@ struct MainTabView: View {
                 }
         }.onAppear() {
             transceiver.resume()
-            transceiver.availablePeersDidChange = { peer in
-                print("\n\nPeer \(peer.description) changed.\n\n")
+            transceiver.peerAdded = { peer in
+                self.peers.addPeer(name: peer.name, id: peer.id)
+            }
+            transceiver.peerRemoved = { peer in
+                self.peers.removePeer(id: peer.id)
             }
         }
     }

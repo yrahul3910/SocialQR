@@ -22,6 +22,7 @@
 		0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546C2202563ABBE00E85E9D /* FriendView.swift */; };
 		056FA0C62564D1A80016B269 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 056FA0C52564D1A80016B269 /* CodeScanner */; };
 		059155242568D9E4004E7E46 /* MultipeerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 059155232568D9E4004E7E46 /* MultipeerKit */; };
+		0591552A256A2252004E7E46 /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05915529256A2252004E7E46 /* NearbyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0546C2162563A6CA00E85E9D /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		0546C21B2563A7B800E85E9D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0546C2202563ABBE00E85E9D /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
+		05915529256A2252004E7E46 /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				0546C2162563A6CA00E85E9D /* FriendsView.swift */,
 				0546C21B2563A7B800E85E9D /* Friend.swift */,
 				0546C2202563ABBE00E85E9D /* FriendView.swift */,
+				05915529256A2252004E7E46 /* NearbyView.swift */,
 			);
 			path = SocialQR;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0546C2172563A6CA00E85E9D /* FriendsView.swift in Sources */,
+				0591552A256A2252004E7E46 /* NearbyView.swift in Sources */,
 				0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */,
 				050732D62563539F003F0746 /* ProfileBannerView.swift in Sources */,
 				05073302256355F1003F0746 /* AsyncImage.swift in Sources */,
