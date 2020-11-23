@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import MultipeerKit
 
 struct NearbyView: View {
     @ObservedObject var peerList: PeerList
+    var popupFunc: (String) -> Void
+    var requestFunc: (Peer) -> ()
     
     var body: some View {
         VStack {
@@ -19,15 +22,20 @@ struct NearbyView: View {
                 .padding()
             ScrollView {
                 ForEach(peerList.peers.indices, id: \.self, content: { index in
-                    Button(action: {}, label: {
-                        HStack {
-                            Circle()
-                                .frame(width: 12, height: 12)
-                                .foregroundColor(.green)
-                            Text(verbatim: peerList.peers[index].name)
-                            Spacer()
-                        }
-                    }).padding()
+                    HStack {
+                        Circle()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.green)
+                        Text(verbatim: peerList.peers[index].name)
+                        Spacer()
+                        Button(action: {
+                            self.requestFunc(peerList.peers[index])
+                            self.popupFunc("Request sent!")
+                            
+                        }, label: {
+                            Image(systemName: "plus.bubble.fill")
+                        })
+                    }.padding()
                 })
             }
         }

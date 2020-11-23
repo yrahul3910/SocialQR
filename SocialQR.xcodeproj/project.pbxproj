@@ -23,6 +23,8 @@
 		056FA0C62564D1A80016B269 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 056FA0C52564D1A80016B269 /* CodeScanner */; };
 		059155242568D9E4004E7E46 /* MultipeerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 059155232568D9E4004E7E46 /* MultipeerKit */; };
 		0591552A256A2252004E7E46 /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05915529256A2252004E7E46 /* NearbyView.swift */; };
+		0591552F256B7D06004E7E46 /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0591552E256B7D06004E7E46 /* RequestsView.swift */; };
+		0591553C256B83BE004E7E46 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0591553B256B83BE004E7E46 /* PopupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		0546C21B2563A7B800E85E9D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0546C2202563ABBE00E85E9D /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
 		05915529256A2252004E7E46 /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
+		0591552E256B7D06004E7E46 /* RequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
+		0591553B256B83BE004E7E46 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 				0546C21B2563A7B800E85E9D /* Friend.swift */,
 				0546C2202563ABBE00E85E9D /* FriendView.swift */,
 				05915529256A2252004E7E46 /* NearbyView.swift */,
+				0591552E256B7D06004E7E46 /* RequestsView.swift */,
+				0591553B256B83BE004E7E46 /* PopupView.swift */,
 			);
 			path = SocialQR;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0591552F256B7D06004E7E46 /* RequestsView.swift in Sources */,
 				0546C2172563A6CA00E85E9D /* FriendsView.swift in Sources */,
 				0591552A256A2252004E7E46 /* NearbyView.swift in Sources */,
 				0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */,
@@ -304,6 +311,7 @@
 				0546C20A2563A06F00E85E9D /* ProfileView.swift in Sources */,
 				050733072563560E003F0746 /* ImageLoader.swift in Sources */,
 				0546C2122563A24800E85E9D /* TabView.swift in Sources */,
+				0591553C256B83BE004E7E46 /* PopupView.swift in Sources */,
 				050732D42563539F003F0746 /* SocialQRApp.swift in Sources */,
 				0546C21C2563A7B800E85E9D /* Friend.swift in Sources */,
 			);
