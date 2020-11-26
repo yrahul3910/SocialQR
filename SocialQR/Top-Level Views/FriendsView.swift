@@ -26,6 +26,7 @@ struct FriendsView: View {
         case .success(let code):
             do {
                 let decoded = try JSONDecoder().decode(Friend.self, from: Data(code.utf8))
+                // TODO: Save on app close
                 friends.friends.append(decoded)
             } catch {
                 

@@ -15,6 +15,7 @@ struct RequestsView: View {
                     HStack {
                         Text(verbatim: peerList.peers[index].name)
                         Spacer()
+                        // TODO
                         Button(action: {}, label: {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)

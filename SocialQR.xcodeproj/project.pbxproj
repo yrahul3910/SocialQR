@@ -25,6 +25,10 @@
 		0591552A256A2252004E7E46 /* NearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05915529256A2252004E7E46 /* NearbyView.swift */; };
 		0591552F256B7D06004E7E46 /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0591552E256B7D06004E7E46 /* RequestsView.swift */; };
 		0591553C256B83BE004E7E46 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0591553B256B83BE004E7E46 /* PopupView.swift */; };
+		05A83F43256E17FE00310914 /* GlobalMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F42256E17FE00310914 /* GlobalMessagesView.swift */; };
+		05A83F48256E18F600310914 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F47256E18F600310914 /* CustomScrollView.swift */; };
+		05A83F4D256E1A2F00310914 /* ChatUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F4C256E1A2F00310914 /* ChatUtilities.swift */; };
+		05A83F52256F7C4B00310914 /* PeerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F51256F7C4B00310914 /* PeerUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		05915529256A2252004E7E46 /* NearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyView.swift; sourceTree = "<group>"; };
 		0591552E256B7D06004E7E46 /* RequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
 		0591553B256B83BE004E7E46 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		05A83F42256E17FE00310914 /* GlobalMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMessagesView.swift; sourceTree = "<group>"; };
+		05A83F47256E18F600310914 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
+		05A83F4C256E1A2F00310914 /* ChatUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUtilities.swift; sourceTree = "<group>"; };
+		05A83F51256F7C4B00310914 /* PeerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,16 +132,12 @@
 				050732D7256353A1003F0746 /* Assets.xcassets */,
 				050732DC256353A1003F0746 /* Info.plist */,
 				050732D9256353A1003F0746 /* Preview Content */,
-				05073301256355F1003F0746 /* AsyncImage.swift */,
-				050733062563560E003F0746 /* ImageLoader.swift */,
-				0546C2092563A06F00E85E9D /* ProfileView.swift */,
-				0546C2112563A24800E85E9D /* TabView.swift */,
-				0546C2162563A6CA00E85E9D /* FriendsView.swift */,
+				05A83F56256F7DF200310914 /* Top-Level Views */,
 				0546C21B2563A7B800E85E9D /* Friend.swift */,
 				0546C2202563ABBE00E85E9D /* FriendView.swift */,
-				05915529256A2252004E7E46 /* NearbyView.swift */,
-				0591552E256B7D06004E7E46 /* RequestsView.swift */,
 				0591553B256B83BE004E7E46 /* PopupView.swift */,
+				05A83F42256E17FE00310914 /* GlobalMessagesView.swift */,
+				05A83F5A256F7E1D00310914 /* Utility classes */,
 			);
 			path = SocialQR;
 			sourceTree = "<group>";
@@ -162,6 +166,30 @@
 				050732F2256353A1003F0746 /* Info.plist */,
 			);
 			path = SocialQRUITests;
+			sourceTree = "<group>";
+		};
+		05A83F56256F7DF200310914 /* Top-Level Views */ = {
+			isa = PBXGroup;
+			children = (
+				0546C2092563A06F00E85E9D /* ProfileView.swift */,
+				0546C2112563A24800E85E9D /* TabView.swift */,
+				0546C2162563A6CA00E85E9D /* FriendsView.swift */,
+				05915529256A2252004E7E46 /* NearbyView.swift */,
+				0591552E256B7D06004E7E46 /* RequestsView.swift */,
+			);
+			path = "Top-Level Views";
+			sourceTree = "<group>";
+		};
+		05A83F5A256F7E1D00310914 /* Utility classes */ = {
+			isa = PBXGroup;
+			children = (
+				05A83F47256E18F600310914 /* CustomScrollView.swift */,
+				05073301256355F1003F0746 /* AsyncImage.swift */,
+				050733062563560E003F0746 /* ImageLoader.swift */,
+				05A83F4C256E1A2F00310914 /* ChatUtilities.swift */,
+				05A83F51256F7C4B00310914 /* PeerUtilities.swift */,
+			);
+			path = "Utility classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,13 +332,17 @@
 			files = (
 				0591552F256B7D06004E7E46 /* RequestsView.swift in Sources */,
 				0546C2172563A6CA00E85E9D /* FriendsView.swift in Sources */,
+				05A83F48256E18F600310914 /* CustomScrollView.swift in Sources */,
 				0591552A256A2252004E7E46 /* NearbyView.swift in Sources */,
 				0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */,
+				05A83F4D256E1A2F00310914 /* ChatUtilities.swift in Sources */,
+				05A83F52256F7C4B00310914 /* PeerUtilities.swift in Sources */,
 				050732D62563539F003F0746 /* ProfileBannerView.swift in Sources */,
 				05073302256355F1003F0746 /* AsyncImage.swift in Sources */,
 				0546C20A2563A06F00E85E9D /* ProfileView.swift in Sources */,
 				050733072563560E003F0746 /* ImageLoader.swift in Sources */,
 				0546C2122563A24800E85E9D /* TabView.swift in Sources */,
+				05A83F43256E17FE00310914 /* GlobalMessagesView.swift in Sources */,
 				0591553C256B83BE004E7E46 /* PopupView.swift in Sources */,
 				050732D42563539F003F0746 /* SocialQRApp.swift in Sources */,
 				0546C21C2563A7B800E85E9D /* Friend.swift in Sources */,
