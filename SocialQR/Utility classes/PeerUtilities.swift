@@ -7,7 +7,7 @@ struct CodablePayload: Codable, Hashable {
 
 struct Peer {
     let name: String
-    let id: String
+    let id: String    
 }
 
 class PeerList: ObservableObject {
@@ -22,6 +22,12 @@ class PeerList: ObservableObject {
     }
     
     func removePeer(id peerId: String) {
+        if !self.peers.contains(where: { mpkPeer in
+            mpkPeer.id == peerId
+        }) {
+            return
+        }
+        
         self.peers.remove(
             at: self.peers.firstIndex(where: { peer in
                 peer.id == peerId

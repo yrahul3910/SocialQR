@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "294BFF58-4D66-40D8-B18A-CA8A2B72AD1A"
-            shouldBeEnabled = "Yes"
+            uuid = "DE93D463-0A02-4B02-8912-B7ECB95AE3E4"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SocialQR/SocialQRApp.swift"
+            filePath = "SocialQR/Top-Level Views/TabView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "SocialQRApp"
-            landmarkType = "14">
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

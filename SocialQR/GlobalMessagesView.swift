@@ -16,7 +16,11 @@ struct GlobalMessagesView: View {
                         LazyVStack {
                             ForEach(0..<model.arrayOfMessages.count, id:\.self) { index in
                                 ChatBubble(position: model.arrayOfPositions[index], color: model.arrayOfPositions[index] == BubblePosition.right ?.green : .blue) {
-                                    Text(model.arrayOfMessages[index])
+                                    VStack(alignment: .leading) {
+                                        Text(model.arrayOfSenders[index] + ":")
+                                            .bold()
+                                        Text(model.arrayOfMessages[index])
+                                    }
                                 }
                             }
                         }
@@ -34,8 +38,8 @@ struct GlobalMessagesView: View {
                             if model.text != "" {
                                 model.position = BubblePosition.right
                                 model.arrayOfPositions.append(model.position)
-                                // TODO: Show name of sender
                                 model.arrayOfMessages.append(model.text)
+                                model.arrayOfSenders.append("You")
                                 
                                 let payload = CodablePayload(message: model.text, type: "broadcast")
                                 self.transceiver.broadcast(payload)

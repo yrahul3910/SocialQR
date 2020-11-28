@@ -42,9 +42,9 @@ struct FriendsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(friends.friends.indices, id: \.self) { index in
-                        FriendView(img: UIImage(data: friends.friends[index].img)!,
-                                   name: friends.friends[index].name,
-                                   phone: friends.friends[index].phone)
+                        FriendView(img: UIImage(data: (friends.friends[index].img ?? "".data(using: .utf8))!)!,
+                                   name: friends.friends[index].name!,
+                                   phone: friends.friends[index].phone!)
                     }
                 }
             }

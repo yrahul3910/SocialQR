@@ -1,22 +1,29 @@
 import SwiftUI
+import MultipeerKit
 
 struct RequestsView: View {
     @ObservedObject var peerList: PeerList
+    @State var friendsList: FriendList
+    var reqAcceptFunc: (Peer) -> Void
+    @State var inChatWith: Friend?
+    @State var currentChatModel: ChatModel?
+    @Binding var inChat: Bool
+    var transceiver: MultipeerTransceiver
     
     var body: some View {
-        VStack {
-            Text("Message Requests")
-                .font(.largeTitle)
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
+        NavigationView {
             ScrollView {
                 ForEach(peerList.peers.indices, id: \.self, content: { [self] index in
                     HStack {
                         Text(verbatim: peerList.peers[index].name)
                         Spacer()
-                        // TODO
-                        Button(action: {}, label: {
+                        NavigationLink(
+                            destination: PrivateMessagingView(model: currentChatModel!, transceiver: transceiver, friendInfo: inChatWith!),
+                            isActive: $inChat) { EmptyView() }
+                        Button(action: {
+                            // Request accepted, let the parent handle it.
+                            reqAcceptFunc(peerList.peers[index])
+                        }, label: {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
                         })
@@ -28,7 +35,7 @@ struct RequestsView: View {
                         })
                     }.padding()
                 })
-            }
+            }.navigationBarTitle("Requests")
         }
     }
 }

@@ -22,7 +22,7 @@ struct FriendView: View {
                     .font(.headline)
                     .bold()
                 Button(action: {
-                    let formattedString = "tel://\(self.phone)"
+                    let formattedString = "sms:\(self.phone)&body="
                     let url: NSURL = URL(string: formattedString)! as NSURL
                 
                     UIApplication.shared.open(url as URL)
