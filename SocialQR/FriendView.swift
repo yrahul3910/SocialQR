@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct FriendView: View {
-    @State var img: UIImage
+    @State var img: UIImage?
     @State var name: String
     @State var phone: String
     
     var body: some View {
         HStack {
-            Image(uiImage: self.img)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .cornerRadius(50)
+            if (self.img != nil) {
+                Image(uiImage: self.img!)
+            }
             VStack {
                 Text(self.name)
                     .font(.headline)
@@ -32,7 +32,7 @@ struct FriendView: View {
                 }
             }
             Spacer()
-        }
+        }.padding()
         Spacer()
     }
 }

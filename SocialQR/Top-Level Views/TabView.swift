@@ -15,7 +15,7 @@ struct MainTabView: View {
     
     // Who are we in a PM with?
     @State var inPrivateChatWith: Friend = nullFriend
-        
+    
     // Mapping from phone numbers to ChatModel instances
     @State var privateMessageModels: Dictionary<String, ChatModel> = ["": ChatModel()]
     

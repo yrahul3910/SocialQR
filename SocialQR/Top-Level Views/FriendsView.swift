@@ -1,12 +1,16 @@
 import SwiftUI
 import CodeScanner
 
-struct FriendList: Codable {
-    var friends: Array<Friend>
+class FriendList: Codable, ObservableObject {
+    var friends: Array<Friend> = []
+    
+    init(friends: Array<Friend>) {
+        self.friends = friends
+    }
 }
 
 struct FriendsView: View {
-    @State var friends: FriendList
+    @ObservedObject var friends: FriendList
     @State private var isShowingCamera = false
     private let simulatedData = try! String(data: JSONEncoder().encode(
         Friend(name: "R. Yedida",
@@ -19,6 +23,7 @@ struct FriendsView: View {
                occupation: "Ph.D. student")
     ), encoding: String.Encoding.utf8) ?? ""
     
+    // Handle QR code scanning
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
         self.isShowingCamera = false
         
@@ -42,7 +47,7 @@ struct FriendsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(friends.friends.indices, id: \.self) { index in
-                        FriendView(img: UIImage(data: (friends.friends[index].img ?? "".data(using: .utf8))!)!,
+                        FriendView(img: UIImage(data: (friends.friends[index].img ?? "".data(using: .utf8))!),
                                    name: friends.friends[index].name!,
                                    phone: friends.friends[index].phone!)
                     }
