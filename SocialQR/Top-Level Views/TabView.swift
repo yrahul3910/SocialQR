@@ -196,7 +196,14 @@ struct MainTabView: View {
                 })
             }
         }.onDisappear(perform: {
-            
+            // Save the user profile and friends list.
+            let encoder = JSONEncoder()
+            do {
+                let encodedFriendList = try encoder.encode(self.friends)
+                UserDefaults.standard.setValue(encodedFriendList, forKey: "friendList")
+            } catch {
+                print("Failed to save to disk: " + error.localizedDescription)
+            }
         }).popup(isPresented: $showingPopup, autohideIn: 2) {
             HStack {
                 Text(self.popupText)

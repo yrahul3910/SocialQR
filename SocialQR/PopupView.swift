@@ -12,7 +12,7 @@ extension View {
 
     public func popup<PopupContent: View>(
         isPresented: Binding<Bool>,
-        type: Popup<PopupContent>.PopupType = .`default`,
+        type: Popup<PopupContent>.PopupType = .toast,
         position: Popup<PopupContent>.Position = .bottom,
         animation: Animation = Animation.easeOut(duration: 0.3),
         autohideIn: Double? = nil,
