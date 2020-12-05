@@ -4,8 +4,14 @@ import UserNotifications
 
 struct MainTabView: View {
     @State private var friends: FriendList = FriendList(friends: [])
-    private let decoder = JSONDecoder()
     private var transceiver = MultipeerTransceiver()
+    
+    // Our settings manager
+    private let settingsManager = SettingsManager()
+    
+    // JSON encoding and decoding
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
     
     // Our own info
     private var userInfo: Friend = Friend()
@@ -45,12 +51,20 @@ struct MainTabView: View {
          not exist, then create an empty friend list, and return that
          instead.
          */
-        friends = try! decoder.decode(FriendList.self,
-                                      from: UserDefaults.standard.data(forKey: "friendList") ?? JSONEncoder().encode(FriendList(friends: [])))
+        var friendListSetting: String
+        var userInfoSetting: String
         
-        userInfo = try! decoder.decode(Friend.self,
-                                       from: UserDefaults.standard.data(forKey: "userInfo") ??
-                                        JSONEncoder().encode(Friend()))
+        do {
+            try friendListSetting = settingsManager.getSettingOrCreate(key: "friendList", default: String(decoding: encoder.encode(FriendList(friends: [])), as: UTF8.self)) as! String
+            
+            try userInfoSetting = settingsManager.getSettingOrCreate(key: "userInfo", default: String(decoding: encoder.encode(Friend()), as: UTF8.self)) as! String
+            
+            friends = try! decoder.decode(FriendList.self, from: Data(friendListSetting.utf8))
+            userInfo = try! decoder.decode(Friend.self,
+                                           from: Data(userInfoSetting.utf8))
+        } catch {
+            print("Could not create setting friendList: " + error.localizedDescription)
+        }
     }
     
     /* Function passed down to NearbyView to update us on whether or not
