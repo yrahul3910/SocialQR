@@ -34,6 +34,8 @@
 		05A83F4D256E1A2F00310914 /* ChatUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F4C256E1A2F00310914 /* ChatUtilities.swift */; };
 		05A83F52256F7C4B00310914 /* PeerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F51256F7C4B00310914 /* PeerUtilities.swift */; };
 		05A83F5F256F81C000310914 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05A83F5E256F81C000310914 /* README.md */; };
+		05BE79ED258761F30024422A /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79EC258761F30024422A /* iPhoneNumberField */; };
+		05BE79F32587654F0024422A /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79F22587654F0024422A /* ImagePickerView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 			files = (
 				056FA0C62564D1A80016B269 /* CodeScanner in Frameworks */,
 				059155242568D9E4004E7E46 /* MultipeerKit in Frameworks */,
+				05BE79ED258761F30024422A /* iPhoneNumberField in Frameworks */,
+				05BE79F32587654F0024422A /* ImagePickerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +232,8 @@
 			packageProductDependencies = (
 				056FA0C52564D1A80016B269 /* CodeScanner */,
 				059155232568D9E4004E7E46 /* MultipeerKit */,
+				05BE79EC258761F30024422A /* iPhoneNumberField */,
+				05BE79F22587654F0024422A /* ImagePickerView */,
 			);
 			productName = SocialQR;
 			productReference = 050732D02563539F003F0746 /* SocialQR.app */;
@@ -304,6 +310,8 @@
 			packageReferences = (
 				056FA0C42564D1A80016B269 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				059155222568D9E4004E7E46 /* XCRemoteSwiftPackageReference "MultipeerKit" */,
+				05BE79EB258761F30024422A /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				05BE79F12587654F0024422A /* XCRemoteSwiftPackageReference "ImagePickerView" */,
 			);
 			productRefGroup = 050732D12563539F003F0746 /* Products */;
 			projectDirPath = "";
@@ -708,6 +716,22 @@
 				minimumVersion = 0.3.1;
 			};
 		};
+		05BE79EB258761F30024422A /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.4;
+			};
+		};
+		05BE79F12587654F0024422A /* XCRemoteSwiftPackageReference "ImagePickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralfebert/ImagePickerView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -720,6 +744,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 059155222568D9E4004E7E46 /* XCRemoteSwiftPackageReference "MultipeerKit" */;
 			productName = MultipeerKit;
+		};
+		05BE79EC258761F30024422A /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05BE79EB258761F30024422A /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
+		05BE79F22587654F0024422A /* ImagePickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05BE79F12587654F0024422A /* XCRemoteSwiftPackageReference "ImagePickerView" */;
+			productName = ImagePickerView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

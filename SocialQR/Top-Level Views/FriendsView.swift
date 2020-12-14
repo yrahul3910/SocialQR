@@ -16,11 +16,8 @@ struct FriendsView: View {
         Friend(name: "R. Yedida",
                phone: "+19196368327",
                notes: "Nice dude",
-               img: UIImage(systemName: "plus")?.pngData() ?? Data(),
-               links: ["Website": "https://ryedida.me"],
-               interests: ["coffee"],
-               hobbies: ["programming"],
-               occupation: "Ph.D. student")
+               img: UIImage(systemName: "plus")?.pngData() ?? Data()
+               )
     ), encoding: String.Encoding.utf8) ?? ""
     
     // Handle QR code scanning

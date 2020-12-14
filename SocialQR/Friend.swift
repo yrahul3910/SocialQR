@@ -12,8 +12,4 @@ struct Friend: Codable, Hashable {
     var phone: String?
     var notes: String?
     var img: Data?
-    var links: Dictionary<String, String>?
-    var interests: Array<String>?
-    var hobbies: Array<String>?
-    var occupation: String?
 }

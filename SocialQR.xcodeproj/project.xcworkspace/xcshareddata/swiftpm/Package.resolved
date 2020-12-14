@@ -11,12 +11,39 @@
         }
       },
       {
+        "package": "ImagePickerView",
+        "repositoryURL": "https://github.com/ralfebert/ImagePickerView.git",
+        "state": {
+          "branch": null,
+          "revision": "b84dd1c85a65cddba40c89699cd63ba0cb248dbd",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "iPhoneNumberField",
+        "repositoryURL": "https://github.com/MojtabaHs/iPhoneNumberField.git",
+        "state": {
+          "branch": null,
+          "revision": "a7b931be173767e6442620198ba9fa554046f0f3",
+          "version": "0.5.4"
+        }
+      },
+      {
         "package": "MultipeerKit",
         "repositoryURL": "https://github.com/insidegui/MultipeerKit",
         "state": {
           "branch": null,
           "revision": "0fabe19e595e4f52dffb349b7ef8648d501ec8a9",
           "version": "0.3.1"
+        }
+      },
+      {
+        "package": "PhoneNumberKit",
+        "repositoryURL": "https://github.com/marmelroy/PhoneNumberKit",
+        "state": {
+          "branch": null,
+          "revision": "c7d7b0c91ef0ad7e413022edfcf5d6f75561e2d5",
+          "version": "3.3.1"
         }
       }
     ]
