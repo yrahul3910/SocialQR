@@ -22,9 +22,18 @@ class ObservableBool: ObservableObject {
 
 @main
 struct SocialQRApp: App {
+    private var isFirstRun = ObservableBool()
+    
+    init() {
+        let manager = SettingsManager()
+        if (manager.doesSettingExist(key: "friendList")) {
+            isFirstRun.setFalse()
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView().environmentObject(ObservableBool())
+            MainTabView().environmentObject(isFirstRun)
         }
     }
 }

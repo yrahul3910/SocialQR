@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		050732D42563539F003F0746 /* SocialQRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732D32563539F003F0746 /* SocialQRApp.swift */; };
-		050732D62563539F003F0746 /* ProfileBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732D52563539F003F0746 /* ProfileBannerView.swift */; };
 		050732D8256353A1003F0746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050732D7256353A1003F0746 /* Assets.xcassets */; };
 		050732DB256353A1003F0746 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050732DA256353A1003F0746 /* Preview Assets.xcassets */; };
 		050732E6256353A1003F0746 /* SocialQRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050732E5256353A1003F0746 /* SocialQRTests.swift */; };
@@ -58,7 +57,6 @@
 /* Begin PBXFileReference section */
 		050732D02563539F003F0746 /* SocialQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		050732D32563539F003F0746 /* SocialQRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialQRApp.swift; sourceTree = "<group>"; };
-		050732D52563539F003F0746 /* ProfileBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBannerView.swift; sourceTree = "<group>"; };
 		050732D7256353A1003F0746 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050732DA256353A1003F0746 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		050732DC256353A1003F0746 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				050732D32563539F003F0746 /* SocialQRApp.swift */,
-				050732D52563539F003F0746 /* ProfileBannerView.swift */,
 				050732D7256353A1003F0746 /* Assets.xcassets */,
 				050732DC256353A1003F0746 /* Info.plist */,
 				050732D9256353A1003F0746 /* Preview Content */,
@@ -363,7 +360,6 @@
 				0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */,
 				05A83F4D256E1A2F00310914 /* ChatUtilities.swift in Sources */,
 				05A83F52256F7C4B00310914 /* PeerUtilities.swift in Sources */,
-				050732D62563539F003F0746 /* ProfileBannerView.swift in Sources */,
 				057D5F39257B698B00AB654A /* SettingsManager.swift in Sources */,
 				057D5F3E257B82F000AB654A /* FirstRunView.swift in Sources */,
 				05073302256355F1003F0746 /* AsyncImage.swift in Sources */,
@@ -446,6 +442,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7CMVH392CF;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -507,6 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7CMVH392CF;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

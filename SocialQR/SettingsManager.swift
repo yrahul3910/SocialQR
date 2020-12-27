@@ -18,28 +18,28 @@ class SettingsManager {
     }
     
     func doesSettingExist(key: String) -> Bool {
-        return UserDefaults.standard.object(forKey: key) != nil
+        return UserDefaults.standard.string(forKey: key) != nil
     }
     
-    func getSetting(key: String) throws -> Any {
+    func getSetting(key: String) throws -> String {
         if !doesSettingExist(key: key) {
             throw SettingsError.invalidKey
         }
         
-        let value = UserDefaults.standard.object(forKey: key)
+        let value = UserDefaults.standard.string(forKey: key)
         return value!
     }
     
-    func getSettingOrCreate(key: String, default value: Any?) -> Any {
+    func getSettingOrCreate(key: String, default value: String?) throws -> String {
         if doesSettingExist(key: key) {
-            return try! getSetting(key: key)
+            return try getSetting(key: key)
         } else {
             setSetting(key: key, value: value!)
             return value!
         }
     }
     
-    func setSetting(key: String, value: Any) -> Void {
+    func setSetting(key: String, value: String) -> Void {
         UserDefaults.standard.set(value, forKey: key)
     }
 }

@@ -14,16 +14,16 @@ struct PrivateMessagingView: View {
             VStack {
                 //MARK:- Heading
                 VStack {
-                    Text(friendInfo.name!)
+                    Text(friendInfo.name)
                         .bold()
                         .font(.largeTitle)
                     Button(action: {
-                        let formattedString = "sms:\(friendInfo.phone!)&body="
+                        let formattedString = "sms:\(friendInfo.phone)&body="
                         let url: NSURL = URL(string: formattedString)! as NSURL
                         
                         UIApplication.shared.open(url as URL)
                     }) {
-                        Text(verbatim: friendInfo.phone!)
+                        Text(verbatim: friendInfo.phone)
                             .foregroundColor(.green)
                     }
                 }

@@ -17,7 +17,7 @@ struct MainTabView: View {
     @EnvironmentObject var firstRun: ObservableBool
     
     // Our own info
-    private var userInfo: Friend = Friend()
+    @State var userInfo: Friend = nullFriend
     
     // Are we in a PM?
     @State var inPrivateChat: Bool = false
@@ -58,16 +58,37 @@ struct MainTabView: View {
         var userInfoSetting: String
         
         do {
-            try friendListSetting = settingsManager.getSettingOrCreate(key: "friendList", default: String(decoding: encoder.encode(FriendList(friends: [])), as: UTF8.self)) as! String
+            friendListSetting = try settingsManager.getSettingOrCreate(key: "friendList", default: String(data: encoder.encode(FriendList(friends: [])), encoding: .utf8))
             
-            try userInfoSetting = settingsManager.getSettingOrCreate(key: "userInfo", default: String(decoding: encoder.encode(Friend()), as: UTF8.self)) as! String
+            userInfoSetting = try settingsManager.getSettingOrCreate(key: "userInfo", default: String(data: encoder.encode(nullFriend), encoding: .utf8))
             
-            friends = try! decoder.decode(FriendList.self, from: Data(friendListSetting.utf8))
-            userInfo = try! decoder.decode(Friend.self,
-                                           from: Data(userInfoSetting.utf8))
+            _friends = try .init(wrappedValue: decoder.decode(FriendList.self, from: friendListSetting.data(using: .utf8)!))
+            _userInfo = try .init(wrappedValue: decoder.decode(Friend.self,
+                                          from: userInfoSetting.data(using: .utf8)!))
+            
         } catch {
-            print("Could not create setting friendList: " + error.localizedDescription)
+            print("Failed to initialize: " + error.localizedDescription)
+        }        
+    }
+    
+    func saveDetails() {
+        // Save the user profile and friends list.
+        do {
+            let encodedFriendList = try String(data: encoder.encode(self.friends), encoding: .utf8)
+            settingsManager.setSetting(key: "friendList", value: encodedFriendList!)
+            
+            let encodedSelf = try String(data: encoder.encode(self.userInfo), encoding: .utf8)
+            settingsManager.setSetting(key: "userInfo", value: encodedSelf!)
+        } catch {
+            print("Failed to save to disk: " + error.localizedDescription)
         }
+    }
+    
+    /* Passed down to FirstRunView. Fetches the information provided
+     by the user and stores it in our object. */
+    func setUserInfo(info: Friend) {
+        self.userInfo = Friend(name: info.name, phone: info.phone, notes: info.notes, img: info.img)
+        self.saveDetails()
     }
     
     /* Function passed down to NearbyView to update us on whether or not
@@ -116,12 +137,13 @@ struct MainTabView: View {
     
     var body: some View {
         if firstRun.value {
-            FirstRunView()
+            FirstRunView(userInfoFn: self.setUserInfo)
+                .environmentObject(self.firstRun)
         } else {
             ZStack {
                 TabView {
                     RequestsView(peerList: receivedRequestPeers, friendsList: friends, reqAcceptFunc: self.acceptRequest, inChatWith: self.inPrivateChatWith,
-                                 currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone!], inChat: self.$inPrivateChat, transceiver: self.transceiver)
+                                 currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
                             Text("Requests")
@@ -139,7 +161,7 @@ struct MainTabView: View {
                             Text("Friends")
                         }
                     
-                    ProfileView()
+                    ProfileView(userInfo: self.userInfo)
                         .tabItem {
                             Image(systemName: "person.circle")
                             Text("Profile")
@@ -209,20 +231,15 @@ struct MainTabView: View {
                              (b) move the user to the messaging screen.
                              */
                             self.friends.friends.append(userInfo)
-                            self.privateMessageModels[userInfo.phone!] = ChatModel()
+                            self.saveDetails()
+                            self.privateMessageModels[userInfo.phone] = ChatModel()
                             self.inPrivateChat = true
                             self.inPrivateChatWith = userInfo
                         }
                     })
                 }
             }.onDisappear(perform: {
-                // Save the user profile and friends list.
-                do {
-                    let encodedFriendList = try encoder.encode(self.friends)
-                    settingsManager.setSetting(key: "friendList", value: encodedFriendList)
-                } catch {
-                    print("Failed to save to disk: " + error.localizedDescription)
-                }
+                self.saveDetails()
             }).popup(isPresented: $showingPopup, autohideIn: 2) {
                 HStack {
                     Text(self.popupText)
