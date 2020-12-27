@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 // From https://stackoverflow.com/a/62067616
 class ObservableBool: ObservableObject {
@@ -22,18 +23,32 @@ class ObservableBool: ObservableObject {
 
 @main
 struct SocialQRApp: App {
-    private var isFirstRun = ObservableBool()
+    var userPersistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "UserModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
-    init() {
-        let manager = SettingsManager()
-        if (manager.doesSettingExist(key: "friendList")) {
-            isFirstRun.setFalse()
+    func saveContext() {
+        let userContext = userPersistentContainer.viewContext
+        if userContext.hasChanges {
+            do {
+                try userContext.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
     
     var body: some Scene {
         WindowGroup {
-            MainTabView().environmentObject(isFirstRun)
+            MainTabView()
+                .environment(\.managedObjectContext, userPersistentContainer.viewContext)
         }
     }
 }

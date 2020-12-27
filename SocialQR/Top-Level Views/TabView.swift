@@ -3,7 +3,22 @@ import MultipeerKit
 import UserNotifications
 
 struct MainTabView: View {
-    @State private var friends: FriendList = FriendList(friends: [])
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: UserInfo.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \UserInfo.name, ascending: true)
+    ])
+    var user: FetchedResults<UserInfo>
+    
+    @FetchRequest(entity: UserFriendList.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \UserFriendList.jsonData, ascending: true)
+    ])
+    var friendList: FetchedResults<UserFriendList>
+    
+    @FetchRequest(entity: SystemState.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \SystemState.firstRun, ascending: true)
+    ])
+    var systemState: FetchedResults<SystemState>
+    
     private var transceiver = MultipeerTransceiver()
     
     // Our settings manager
@@ -12,12 +27,6 @@ struct MainTabView: View {
     // JSON encoding and decoding
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
-    
-    // Is this our first run?
-    @EnvironmentObject var firstRun: ObservableBool
-    
-    // Our own info
-    @State var userInfo: Friend = nullFriend
     
     // Are we in a PM?
     @State var inPrivateChat: Bool = false
@@ -49,46 +58,13 @@ struct MainTabView: View {
     // The chat model for the broadcast messages
     @State var broadcastChatModel: ChatModel = ChatModel()
     
-    init() {
-        /* Fetch the user friend list from the stored data. If it does
-         not exist, then create an empty friend list, and return that
-         instead.
-         */
-        var friendListSetting: String
-        var userInfoSetting: String
-        
-        do {
-            friendListSetting = try settingsManager.getSettingOrCreate(key: "friendList", default: String(data: encoder.encode(FriendList(friends: [])), encoding: .utf8))
-            
-            userInfoSetting = try settingsManager.getSettingOrCreate(key: "userInfo", default: String(data: encoder.encode(nullFriend), encoding: .utf8))
-            
-            _friends = try .init(wrappedValue: decoder.decode(FriendList.self, from: friendListSetting.data(using: .utf8)!))
-            _userInfo = try .init(wrappedValue: decoder.decode(Friend.self,
-                                          from: userInfoSetting.data(using: .utf8)!))
-            
-        } catch {
-            print("Failed to initialize: " + error.localizedDescription)
-        }        
-    }
-    
     func saveDetails() {
         // Save the user profile and friends list.
         do {
-            let encodedFriendList = try String(data: encoder.encode(self.friends), encoding: .utf8)
-            settingsManager.setSetting(key: "friendList", value: encodedFriendList!)
-            
-            let encodedSelf = try String(data: encoder.encode(self.userInfo), encoding: .utf8)
-            settingsManager.setSetting(key: "userInfo", value: encodedSelf!)
+            try self.moc.save()
         } catch {
             print("Failed to save to disk: " + error.localizedDescription)
         }
-    }
-    
-    /* Passed down to FirstRunView. Fetches the information provided
-     by the user and stores it in our object. */
-    func setUserInfo(info: Friend) {
-        self.userInfo = Friend(name: info.name, phone: info.phone, notes: info.notes, img: info.img)
-        self.saveDetails()
     }
     
     /* Function passed down to NearbyView to update us on whether or not
@@ -136,13 +112,12 @@ struct MainTabView: View {
     }
     
     var body: some View {
-        if firstRun.value {
-            FirstRunView(userInfoFn: self.setUserInfo)
-                .environmentObject(self.firstRun)
+        if systemState.isEmpty {
+            FirstRunView()
         } else {
             ZStack {
                 TabView {
-                    RequestsView(peerList: receivedRequestPeers, friendsList: friends, reqAcceptFunc: self.acceptRequest, inChatWith: self.inPrivateChatWith,
+                    RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[0]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
                                  currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
@@ -155,13 +130,13 @@ struct MainTabView: View {
                             Text("Near Me")
                         }
                     
-                    FriendsView(friends: self.friends)
+                    FriendsView()
                         .tabItem {
                             Image(systemName: "heart.fill")
                             Text("Friends")
                         }
                     
-                    ProfileView(userInfo: self.userInfo, updateProfileFn: self.setUserInfo)
+                    ProfileView()
                         .tabItem {
                             Image(systemName: "person.circle")
                             Text("Profile")
@@ -202,16 +177,13 @@ struct MainTabView: View {
                         } else if payload.type == "needs-info" {
                             // A request has been accepted, need to send our details.
                             var json: String?
-                            if (debug) {
+                            do {
                                 json = String(
-                                    data: try! JSONEncoder().encode(nullFriend),
-                                    encoding: .utf8
-                                )!
-                            } else {
-                                json = String(
-                                    data: try! JSONEncoder().encode(self.userInfo),
+                                    data: try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0])),
                                     encoding: .utf8
                                 )
+                            } catch {
+                                print("[TabView] Could not encode user info: " + error.localizedDescription)
                             }
                             
                             let payload = CodablePayload(message: json ?? "", type: "info")
@@ -223,18 +195,26 @@ struct MainTabView: View {
                                 return
                             }
                             
-                            let userInfo = try! JSONDecoder().decode(Friend.self, from: payload.message.data(using: .utf8)!)
-                            
-                            /* Got our info. Now, we need to:
-                             (a) add the user to our friend list
-                             (b) create a new dictionary entry for this friend
-                             (b) move the user to the messaging screen.
-                             */
-                            self.friends.friends.append(userInfo)
-                            self.saveDetails()
-                            self.privateMessageModels[userInfo.phone] = ChatModel()
-                            self.inPrivateChat = true
-                            self.inPrivateChatWith = userInfo
+                            do {
+                                let userInfo = try JSONDecoder().decode(Friend.self, from: payload.message.data(using: .utf8)!)
+                                
+                                /* Got our info. Now, we need to:
+                                 (a) add the user to our friend list
+                                 (b) create a new dictionary entry for this friend
+                                 (b) move the user to the messaging screen.
+                                 */
+                                let currentFriendList = getFriendListFromEntity(list: self.friendList[0])
+                                currentFriendList.friends.append(userInfo)
+                                let contextFriendList = UserFriendList(context: self.moc)
+                                contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriendList), encoding: .utf8)
+                                
+                                self.saveDetails()
+                                self.privateMessageModels[userInfo.phone] = ChatModel()
+                                self.inPrivateChatWith = userInfo
+                                self.inPrivateChat = true
+                            } catch {
+                                print("[TabView] Failed to decode payload: " + error.localizedDescription)
+                            }
                         }
                     })
                 }

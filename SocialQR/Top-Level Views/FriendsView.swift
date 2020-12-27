@@ -10,14 +10,19 @@ class FriendList: Codable, ObservableObject {
 }
 
 struct FriendsView: View {
-    @ObservedObject var friends: FriendList
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: UserFriendList.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \UserFriendList.jsonData, ascending: true)
+    ])
+    var friends: FetchedResults<UserFriendList>
+    
     @State private var isShowingCamera = false
     private let simulatedData = try! String(data: JSONEncoder().encode(
         Friend(name: "R. Yedida",
                phone: "+19196368327",
                notes: "Nice dude",
                img: UIImage(systemName: "plus")?.pngData() ?? Data()
-               )
+        )
     ), encoding: String.Encoding.utf8) ?? ""
     
     // Handle QR code scanning
@@ -28,10 +33,14 @@ struct FriendsView: View {
         case .success(let code):
             do {
                 let decoded = try JSONDecoder().decode(Friend.self, from: Data(code.utf8))
-                // TODO: Save on app close
-                friends.friends.append(decoded)
-            } catch {
                 
+                let currentFriends = try JSONDecoder().decode(FriendList.self, from: (friends[0].jsonData!.data(using: .utf8))!)
+                currentFriends.friends.append(decoded)
+                
+                let contextFriendList = UserFriendList(context: self.moc)
+                contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriends), encoding: .utf8)
+            } catch {
+                print("[FriendsView] Failed to update: " + error.localizedDescription)
             }
             
         case .failure(_):
@@ -40,13 +49,15 @@ struct FriendsView: View {
     }
     
     var body: some View {
+        let friendList = try! JSONDecoder().decode(FriendList.self, from: (self.friends[0].jsonData!.data(using: .utf8))!)
+        
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(friends.friends.indices, id: \.self) { index in
-                        FriendView(img: UIImage(data: (friends.friends[index].img ?? "".data(using: .utf8))!),
-                                   name: friends.friends[index].name,
-                                   phone: friends.friends[index].phone)
+                    ForEach(friendList.friends.indices, id: \.self) { index in
+                        FriendView(img: UIImage(data: (friendList.friends[index].img ?? "".data(using: .utf8))!),
+                                   name: friendList.friends[index].name,
+                                   phone: friendList.friends[index].phone)
                     }
                 }
             }

@@ -10,9 +10,7 @@ import iPhoneNumberField
 import ImagePickerView
 
 struct FirstRunView: View {
-    var userInfoFn: (Friend) -> ()
-    
-    @EnvironmentObject var firstRun: ObservableBool
+    @Environment(\.managedObjectContext) var moc
     
     @State private var name: String = ""
     @State private var phone: String = ""
@@ -20,16 +18,38 @@ struct FirstRunView: View {
     @State var image: UIImage?
     @State var errorMessage: String = ""
     
+    func populateCoreData() {
+        // Populate Core Data
+        let userInfo = UserInfo(context: self.moc)
+        userInfo.name = name
+        userInfo.phone = phone
+        
+        if self.image == nil {
+            userInfo.img = String(data: UIImage(systemName: "person.fill")!.pngData()!, encoding: .utf8)
+        } else {
+            userInfo.img = String(data: image!.pngData()!, encoding: .utf8)
+        }
+        
+        
+        let newFriends = UserFriendList(context: self.moc)
+        do {
+            newFriends.jsonData = String(data: try JSONEncoder().encode(FriendList(friends: [])), encoding: .utf8)
+            
+            try self.moc.save()
+        } catch {
+            print("[FirstRunView] Could not save data: " + error.localizedDescription)
+        }
+    }
+    
     func processForm() -> Void {
         if (!validate()) {
             self.errorMessage = "Please fill out all the details."
         } else {
             self.errorMessage = ""
-            firstRun.setFalse()
             
-            let user: Friend = Friend(name: self.name, phone: self.phone, notes: "", img: self.image?.pngData())
-            print(user)
-            self.userInfoFn(user)
+            let state = SystemState(context: self.moc)
+            state.firstRun = false
+            populateCoreData()
         }
     }
     
@@ -61,6 +81,8 @@ struct FirstRunView: View {
                     Image(systemName: "person.fill")
                 } else {
                     Image(uiImage: self.image!)
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(50)
                 }
                 Button(action: {self.showImagePicker = true;}, label: {
                     Text("Choose a profile picture (optional)")

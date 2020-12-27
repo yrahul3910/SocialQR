@@ -7,7 +7,7 @@ import MultipeerKit
 struct PrivateMessagingView: View {
     @ObservedObject var model: ChatModel
     var transceiver: MultipeerTransceiver
-    var friendInfo: Friend
+    @State var friendInfo: Friend
     
     var body: some View {
         GeometryReader { geo in

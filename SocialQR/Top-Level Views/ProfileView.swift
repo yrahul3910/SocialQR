@@ -7,13 +7,31 @@
 
 import SwiftUI
 import ImagePickerView
+import CoreImage
 
 struct ProfileView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: UserInfo.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \UserInfo.name, ascending: true)
+    ])
+    var user: FetchedResults<UserInfo>
+    
     private let settingsManager = SettingsManager()
-    @State var userInfo: Friend
     @State var showImagePicker = false
     @State var image: UIImage?
-    @State var updateProfileFn: (Friend) -> ()
+    
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            filter.setValue("Q", forKey: "inputCorrectionLevel")
+            
+            return UIImage(ciImage: filter.outputImage!)
+        }
+        
+        return nil
+    }
     
     var body: some View {
         var friendCount: Int = 0
@@ -26,20 +44,24 @@ struct ProfileView: View {
         return VStack {
             VStack {
                 Button(action: {self.showImagePicker = true}) {
-                    if (self.userInfo.img == nil) {
-                        Image(systemName: "person.fill")
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .cornerRadius(50)
-                    } else {
-                        Image(uiImage: UIImage(data: self.userInfo.img!)!)
-                            .resizable()
-                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .cornerRadius(50)
-                    }
+                if (self.user[0].img == nil) {
+                    Image(systemName: "person.fill")
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(50)
+                } else {
+                    Image(uiImage: UIImage(data: self.user[0].img!.data(using: .utf8)!)!)
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(50)
                 }
-                Text(self.userInfo.name)
+                }
+                    Text(self.user[0].name!)
                     .font(.title2)
                     .bold()
+                Image(uiImage: generateQRCode(
+                    from: String(data: try! JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0])), encoding: .utf8)!
+                )!)
+                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
             HStack {
                 Spacer()
@@ -52,8 +74,15 @@ struct ProfileView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePickerView(sourceType: .photoLibrary) { image in
                 self.image = image
-                self.userInfo.img = image.pngData()
-                self.updateProfileFn(self.userInfo)
+                print(self.user.count)
+                
+                self.user[0].setValue(String(data: (image.pngData() ?? "".data(using: .utf8))!, encoding: .utf8), forKey: "img")
+                
+                do {
+                    try self.moc.save()
+                } catch {
+                    print("[ProfileView] Failed to save context: " + error.localizedDescription)
+                }
             }
         }
     }
