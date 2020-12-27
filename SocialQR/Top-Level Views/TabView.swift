@@ -161,7 +161,7 @@ struct MainTabView: View {
                             Text("Friends")
                         }
                     
-                    ProfileView(userInfo: self.userInfo)
+                    ProfileView(userInfo: self.userInfo, updateProfileFn: self.setUserInfo)
                         .tabItem {
                             Image(systemName: "person.circle")
                             Text("Profile")
