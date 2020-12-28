@@ -7,7 +7,7 @@
         <attribute name="jsonData" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
-        <attribute name="img" optional="YES" attributeType="String"/>
+        <attribute name="img" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>

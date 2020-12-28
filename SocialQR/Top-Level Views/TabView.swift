@@ -21,8 +21,8 @@ struct MainTabView: View {
     
     private var transceiver = MultipeerTransceiver()
     
-    // Our settings manager
-    private let settingsManager = SettingsManager()
+    // What tab are we currently in?
+    @State private var tabSelection = "Nearby"
     
     // JSON encoding and decoding
     private let encoder = JSONEncoder()
@@ -103,12 +103,18 @@ struct MainTabView: View {
             return
         }
         
-        // Peer in range, so send request.
-        let payload = CodablePayload(message: "", type: "needs-info")
-        let to: MultipeerKit.Peer = self.transceiver.availablePeers.first(where: { mpkPeer in
-            mpkPeer.id == peer.id
-        })!
-        self.transceiver.send(payload, to: [to])
+        // Peer in range, so send request for info, sending our own info at the same time.
+        do {
+            let json = try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0]))
+            let jsonString = String(data: json, encoding: .utf8)!
+            let payload = CodablePayload(message: jsonString, type: "needs-info")
+            let to: MultipeerKit.Peer = self.transceiver.availablePeers.first(where: { mpkPeer in
+                mpkPeer.id == peer.id
+            })!
+            self.transceiver.send(payload, to: [to])
+        } catch {
+            print("[TabView] Failed to send needs-info request: " + error.localizedDescription)
+        }
     }
     
     var body: some View {
@@ -116,31 +122,36 @@ struct MainTabView: View {
             FirstRunView()
         } else {
             ZStack {
-                TabView {
+                TabView(selection: $tabSelection) {
                     RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[0]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
                                  currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
                             Text("Requests")
                         }
+                        .tag("Requests")
                     
                     NearbyView(peerList: peers, chatModel: self.broadcastChatModel, hasUnread: self.hasUnreadBroadcasts, popupFunc: self.showPopup, requestFunc: self.sendRequest, broadcastToggleFunc: self.toggleShowingBroadcasts, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "dot.radiowaves.left.and.right")
                             Text("Near Me")
                         }
+                        .tag("Nearby")
                     
-                    FriendsView()
+                    FriendsView(friends: self.friendList[0])
                         .tabItem {
                             Image(systemName: "heart.fill")
                             Text("Friends")
                         }
+                        .environment(\.managedObjectContext, self.moc)
+                        .tag("Friends")
                     
-                    ProfileView()
+                    ProfileView(friends: self.friendList[0])
                         .tabItem {
                             Image(systemName: "person.circle")
                             Text("Profile")
                         }
+                        .tag("Profile")
                 }.onAppear() {
                     // Start the transceiver.
                     transceiver.resume()
@@ -188,6 +199,39 @@ struct MainTabView: View {
                             
                             let payload = CodablePayload(message: json ?? "", type: "info")
                             self.transceiver.send(payload, to: [from])
+                            
+                            /* We are now also friends, so we need to:
+                            (a) add the user to our friend list
+                            (b) create a new dictionary entry for this friend
+                            (c) move the user to the messaging screen.
+                             */
+                            do {
+                                // First, get the peer details
+                                let peerInfo: Friend = try JSONDecoder().decode(Friend.self, from: payload.message.data(using: .utf8)!)
+                                
+                                // Get our friend list, and add it in
+                                let currentFriendList: FriendList = getFriendListFromEntity(list: self.friendList[0])
+                                currentFriendList.friends.append(peerInfo)
+                                let contextFriendList = UserFriendList(context: self.moc)
+                                contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriendList), encoding: .utf8)
+                                
+                                // Save to disk.
+                                try self.moc.save()
+                                
+                                self.friendList[0].jsonData = contextFriendList.jsonData
+                                
+                                // Create the dictionary entry
+                                self.privateMessageModels[peerInfo.phone] = ChatModel()
+                                
+                                // Move to the tab with the messages.
+                                self.tabSelection = "Requests"
+                                
+                                // Start the chat
+                                self.inPrivateChatWith = peerInfo
+                                self.inPrivateChat = true
+                            } catch {
+                                print("[TabView] Adding to friend list failed: " + error.localizedDescription)
+                            }
                         } else if payload.type == "info" {
                             // A response for a request for info from an accepted request.
                             if payload.message == "" {

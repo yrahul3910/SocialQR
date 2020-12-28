@@ -2,7 +2,7 @@
 //  UserInfo+CoreDataClass.swift
 //  SocialQR
 //
-//  Created by Rahul Yedida on 12/26/20.
+//  Created by Rahul Yedida on 12/27/20.
 //
 //
 

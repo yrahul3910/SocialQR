@@ -8,6 +8,7 @@
 import SwiftUI
 import ImagePickerView
 import CoreImage
+import CoreImage.CIFilterBuiltins
 
 struct ProfileView: View {
     @Environment(\.managedObjectContext) var moc
@@ -16,18 +17,19 @@ struct ProfileView: View {
     ])
     var user: FetchedResults<UserInfo>
     
-    private let settingsManager = SettingsManager()
+    @ObservedObject var friends: UserFriendList
     @State var showImagePicker = false
     @State var image: UIImage?
     
-    func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-        
+    func generateQRCode(from data: UserInfo) -> UIImage? {
+        var friend = getFriendFromUserInfo(user: data)
+        friend.img = nil
+        let d = try! JSONEncoder().encode(friend)
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
+            filter.setValue(d, forKey: "inputMessage")
             filter.setValue("Q", forKey: "inputCorrectionLevel")
-            
-            return UIImage(ciImage: filter.outputImage!)
+
+            return UIImage(ciImage: filter.outputImage!).resizeImage(targetSize: CGSize.init(width: 200, height: 200))
         }
         
         return nil
@@ -35,33 +37,39 @@ struct ProfileView: View {
     
     var body: some View {
         var friendCount: Int = 0
+        let decoder = try! NSKeyedUnarchiver(forReadingFrom: self.user[0].img!)
+        
         do {
-            friendCount = try Int(settingsManager.getSettingOrCreate(key: "friendCount", default: "0"))!
+            friendCount = try JSONDecoder().decode(FriendList.self, from: self.friends.jsonData!.data(using: .utf8)!).friends.count
         } catch {
-            print("Could not fetch friend count: " + error.localizedDescription)
+            print("[ProfileView] Failed to get friend count: " + error.localizedDescription)
         }
         
         return VStack {
             VStack {
                 Button(action: {self.showImagePicker = true}) {
-                if (self.user[0].img == nil) {
-                    Image(systemName: "person.fill")
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .cornerRadius(50)
-                } else {
-                    Image(uiImage: UIImage(data: self.user[0].img!.data(using: .utf8)!)!)
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .cornerRadius(50)
+                    if (self.user[0].img == nil) {
+                        Image(systemName: "person.fill")
+                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .cornerRadius(50)
+                            .padding()
+                    } else {
+                        Image(uiImage: UIImage(coder: decoder)!)
+                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .cornerRadius(50)
+                            .padding()
+                    }
                 }
-                }
-                    Text(self.user[0].name!)
+                Text(self.user[0].name!)
                     .font(.title2)
                     .bold()
+                
+                if (self.user[0].img != nil) {
                 Image(uiImage: generateQRCode(
-                    from: String(data: try! JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0])), encoding: .utf8)!
-                )!)
+                        from: self.user[0])!
+                )
                 .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                }
             }
             HStack {
                 Spacer()
@@ -74,8 +82,13 @@ struct ProfileView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePickerView(sourceType: .photoLibrary) { image in
                 self.image = image
-                print(self.user.count)
                 
+                let encoder = NSKeyedArchiver(requiringSecureCoding: false)
+                image.resizeImage(targetSize: CGSize.init(width: 100, height: 100)).encode(with: encoder)
+                encoder.finishEncoding()
+                print(encoder.encodedData)
+                
+                // TODO: Fix
                 self.user[0].setValue(String(data: (image.pngData() ?? "".data(using: .utf8))!, encoding: .utf8), forKey: "img")
                 
                 do {

@@ -24,11 +24,14 @@ struct FirstRunView: View {
         userInfo.name = name
         userInfo.phone = phone
         
-        if self.image == nil {
-            userInfo.img = String(data: UIImage(systemName: "person.fill")!.pngData()!, encoding: .utf8)
-        } else {
-            userInfo.img = String(data: image!.pngData()!, encoding: .utf8)
+        let encoder = NSKeyedArchiver(requiringSecureCoding: false)
+        
+        if image == nil {
+            image = UIImage(systemName: "person.fill")
         }
+        image!.resizeImage(targetSize: CGSize.init(width: 100, height: 100)).encode(with: encoder)
+        encoder.finishEncoding()
+        userInfo.img = encoder.encodedData
         
         
         let newFriends = UserFriendList(context: self.moc)

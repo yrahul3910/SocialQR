@@ -11,10 +11,8 @@ class FriendList: Codable, ObservableObject {
 
 struct FriendsView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: UserFriendList.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \UserFriendList.jsonData, ascending: true)
-    ])
-    var friends: FetchedResults<UserFriendList>
+
+    @ObservedObject var friends: UserFriendList
     
     @State private var isShowingCamera = false
     private let simulatedData = try! String(data: JSONEncoder().encode(
@@ -34,7 +32,7 @@ struct FriendsView: View {
             do {
                 let decoded = try JSONDecoder().decode(Friend.self, from: Data(code.utf8))
                 
-                let currentFriends = try JSONDecoder().decode(FriendList.self, from: (friends[0].jsonData!.data(using: .utf8))!)
+                let currentFriends = try JSONDecoder().decode(FriendList.self, from: (friends.jsonData!.data(using: .utf8))!)
                 currentFriends.friends.append(decoded)
                 
                 let contextFriendList = UserFriendList(context: self.moc)
@@ -49,9 +47,10 @@ struct FriendsView: View {
     }
     
     var body: some View {
-        let friendList = try! JSONDecoder().decode(FriendList.self, from: (self.friends[0].jsonData!.data(using: .utf8))!)
+        let friendList = try! JSONDecoder().decode(FriendList.self, from: (self.friends.jsonData!.data(using: .utf8))!)
+        print(friendList.friends)
         
-        NavigationView {
+        return NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(friendList.friends.indices, id: \.self) { index in
@@ -72,6 +71,5 @@ struct FriendsView: View {
                 CodeScannerView(codeTypes: [.qr], simulatedData: self.simulatedData, completion: self.handleScan)
             }
         }
-        
     }
 }

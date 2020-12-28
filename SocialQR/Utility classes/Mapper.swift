@@ -8,7 +8,7 @@
 import Foundation
 
 func getFriendFromUserInfo(user: UserInfo) -> Friend {
-    return Friend(name: user.name!, phone: user.phone!, notes: user.notes, img: user.img?.data(using: .utf8))
+    return Friend(name: user.name!, phone: user.phone!, notes: user.notes, img: user.img)
 }
 
 func getFriendListFromEntity(list: UserFriendList) -> FriendList {
