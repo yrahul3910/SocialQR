@@ -152,6 +152,13 @@ struct MainTabView: View {
                             Text("Profile")
                         }
                         .tag("Profile")
+                    
+                    AboutView()
+                        .tabItem {
+                            Image(systemName: "gearshape.fill")
+                            Text("Settings")
+                        }
+                        .tag("About")
                 }
                 .onAppear() {
                     // Start the transceiver.

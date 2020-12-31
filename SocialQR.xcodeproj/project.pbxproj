@@ -33,6 +33,7 @@
 		05A83F52256F7C4B00310914 /* PeerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A83F51256F7C4B00310914 /* PeerUtilities.swift */; };
 		05A83F5F256F81C000310914 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05A83F5E256F81C000310914 /* README.md */; };
 		05BAF2DC259D9A01000887A9 /* .git in Resources */ = {isa = PBXBuildFile; fileRef = 05BAF2DB259D9A01000887A9 /* .git */; };
+		05BAF2E4259D9F29000887A9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAF2E3259D9F29000887A9 /* AboutView.swift */; };
 		05BE79ED258761F30024422A /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79EC258761F30024422A /* iPhoneNumberField */; };
 		05BE79F32587654F0024422A /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79F22587654F0024422A /* ImagePickerView */; };
 		05E5466E2598305400FCF813 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05E5466C2598305400FCF813 /* UserModel.xcdatamodeld */; };
@@ -95,6 +96,7 @@
 		05A83F51256F7C4B00310914 /* PeerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerUtilities.swift; sourceTree = "<group>"; };
 		05A83F5E256F81C000310914 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		05BAF2DB259D9A01000887A9 /* .git */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .git; sourceTree = SOURCE_ROOT; };
+		05BAF2E3259D9F29000887A9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		05E5466D2598305400FCF813 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		05F033B825991AAF0080D009 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		05F033CA25991CD70080D009 /* UserFriendList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFriendList+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				050732D9256353A1003F0746 /* Preview Content */,
 				05A83F56256F7DF200310914 /* Top-Level Views */,
 				0546C2202563ABBE00E85E9D /* FriendView.swift */,
+				05BAF2E3259D9F29000887A9 /* AboutView.swift */,
 				057D5F3D257B82F000AB654A /* FirstRunView.swift */,
 				0546C21B2563A7B800E85E9D /* Friend.swift */,
 				0591553B256B83BE004E7E46 /* PopupView.swift */,
@@ -389,6 +392,7 @@
 				05F033CD25991CD70080D009 /* UserFriendList+CoreDataProperties.swift in Sources */,
 				05A83F48256E18F600310914 /* CustomScrollView.swift in Sources */,
 				05F033E925992ABD0080D009 /* SystemState+CoreDataClass.swift in Sources */,
+				05BAF2E4259D9F29000887A9 /* AboutView.swift in Sources */,
 				0591552A256A2252004E7E46 /* NearbyView.swift in Sources */,
 				05F033CC25991CD70080D009 /* UserFriendList+CoreDataClass.swift in Sources */,
 				0546C2212563ABBE00E85E9D /* FriendView.swift in Sources */,

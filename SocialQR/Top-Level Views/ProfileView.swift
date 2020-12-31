@@ -28,7 +28,7 @@ struct ProfileView: View {
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(d, forKey: "inputMessage")
             filter.setValue("Q", forKey: "inputCorrectionLevel")
-
+            
             return UIImage(ciImage: filter.outputImage!).resizeImage(targetSize: CGSize.init(width: 200, height: 200))
         }
         
@@ -47,37 +47,36 @@ struct ProfileView: View {
         
         return VStack {
             VStack {
-                Button(action: {self.showImagePicker = true}) {
-                    if (self.user[0].img == nil) {
-                        Image(systemName: "person.fill")
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .cornerRadius(50)
-                            .padding()
-                    } else {
-                        Image(uiImage: UIImage(coder: decoder)!)
-                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .cornerRadius(50)
-                            .padding()
-                    }
+                HStack {
+                    Button(action: {self.showImagePicker = true}) {
+                        if (self.user[0].img == nil) {
+                            Image(systemName: "person.fill")
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .cornerRadius(50)
+                        } else {
+                            Image(uiImage: UIImage(coder: decoder)!)
+                                .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .cornerRadius(50)
+                        }
+                    }.padding()
+                    VStack {
+                        Text(self.user[0].name!)
+                            .font(.title2)
+                            .bold()
+                        Text("\(friendCount) friend\((friendCount > 1 || friendCount == 0) ? "s" : "")")
+                            .bold()
+                    }.padding()
+                    Spacer()
                 }
-                Text(self.user[0].name!)
-                    .font(.title2)
-                    .bold()
                 
                 if (self.user[0].img != nil) {
-                Image(uiImage: generateQRCode(
-                        from: self.user[0])!
-                )
-                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Image(uiImage: generateQRCode(
+                            from: self.user[0])!
+                    )
+                    .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-            }
-            HStack {
-                Spacer()
-                Text("\(friendCount) friend\((friendCount > 1 || friendCount == 0) ? "s" : "")")
-                    .bold()
                 Spacer()
             }
-            Spacer()
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePickerView(sourceType: .photoLibrary) { image in
