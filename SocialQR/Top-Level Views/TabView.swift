@@ -41,7 +41,7 @@ struct MainTabView: View {
     @State var peers = PeerList()
     
     // List of peers who have sent friend requests
-    @State var receivedRequestPeers = PeerList()
+    @ObservedObject var receivedRequestPeers = PeerList()
     
     // Showing a popup? (Used for toast notifications)
     @State var showingPopup = false
@@ -127,7 +127,7 @@ struct MainTabView: View {
                                  currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
-                            Text("Requests")
+                            Text("Requests (\( self.receivedRequestPeers.peers.count))")
                         }
                         .tag("Requests")
                     
@@ -152,7 +152,8 @@ struct MainTabView: View {
                             Text("Profile")
                         }
                         .tag("Profile")
-                }.onAppear() {
+                }
+                .onAppear() {
                     // Start the transceiver.
                     transceiver.resume()
                     
@@ -201,9 +202,9 @@ struct MainTabView: View {
                             self.transceiver.send(payload, to: [from])
                             
                             /* We are now also friends, so we need to:
-                            (a) add the user to our friend list
-                            (b) create a new dictionary entry for this friend
-                            (c) move the user to the messaging screen.
+                             (a) add the user to our friend list
+                             (b) create a new dictionary entry for this friend
+                             (c) move the user to the messaging screen.
                              */
                             do {
                                 // First, get the peer details
