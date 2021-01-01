@@ -11,8 +11,8 @@ class FriendList: Codable, ObservableObject {
 
 struct FriendsView: View {
     @Environment(\.managedObjectContext) var moc
-
     @ObservedObject var friends: UserFriendList
+    @State var chatFn: (Friend) -> ()
     
     @State private var isShowingCamera = false
     private let simulatedData = try! String(data: JSONEncoder().encode(
@@ -56,7 +56,8 @@ struct FriendsView: View {
                     ForEach(friendList.friends.indices, id: \.self) { index in
                         FriendView(img: UIImage(data: (friendList.friends[index].img ?? "".data(using: .utf8))!),
                                    name: friendList.friends[index].name,
-                                   phone: friendList.friends[index].phone)
+                                   phone: friendList.friends[index].phone,
+                                   chatFn: self.chatFn)
                     }
                 }
             }

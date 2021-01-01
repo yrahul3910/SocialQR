@@ -67,6 +67,18 @@ struct MainTabView: View {
         }
     }
     
+    func instantiateChat(with peerInfo: Friend) {
+        // Create the dictionary entry
+        self.privateMessageModels[peerInfo.phone] = ChatModel()
+        
+        // Move to the tab with the messages.
+        self.tabSelection = "Requests"
+        
+        // Start the chat
+        self.inPrivateChatWith = peerInfo
+        self.inPrivateChat = true
+    }
+    
     /* Function passed down to NearbyView to update us on whether or not
      we are showing the broadcast messages. We use this function to pass
      state up. */
@@ -105,7 +117,7 @@ struct MainTabView: View {
         
         // Peer in range, so send request for info, sending our own info at the same time.
         do {
-            let json = try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0]))
+            let json = try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[self.friendList.count - 1]))
             let jsonString = String(data: json, encoding: .utf8)!
             let payload = CodablePayload(message: jsonString, type: "needs-info")
             let to: MultipeerKit.Peer = self.transceiver.availablePeers.first(where: { mpkPeer in
@@ -123,7 +135,7 @@ struct MainTabView: View {
         } else {
             ZStack {
                 TabView(selection: $tabSelection) {
-                    RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[0]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
+                    RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[friendList.count - 1]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
                                  currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
@@ -138,7 +150,7 @@ struct MainTabView: View {
                         }
                         .tag("Nearby")
                     
-                    FriendsView(friends: self.friendList[0])
+                    FriendsView(friends: self.friendList[friendList.count - 1], chatFn: self.instantiateChat)
                         .tabItem {
                             Image(systemName: "heart.fill")
                             Text("Friends")
@@ -146,7 +158,7 @@ struct MainTabView: View {
                         .environment(\.managedObjectContext, self.moc)
                         .tag("Friends")
                     
-                    ProfileView(friends: self.friendList[0])
+                    ProfileView(friends: self.friendList[self.friendList.count - 1])
                         .tabItem {
                             Image(systemName: "person.circle")
                             Text("Profile")
@@ -198,7 +210,7 @@ struct MainTabView: View {
                             var json: String?
                             do {
                                 json = String(
-                                    data: try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[0])),
+                                    data: try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[self.user.count - 1])),
                                     encoding: .utf8
                                 )
                             } catch {
@@ -218,25 +230,17 @@ struct MainTabView: View {
                                 let peerInfo: Friend = try JSONDecoder().decode(Friend.self, from: payload.message.data(using: .utf8)!)
                                 
                                 // Get our friend list, and add it in
-                                let currentFriendList: FriendList = getFriendListFromEntity(list: self.friendList[0])
+                                let currentFriendList: FriendList = getFriendListFromEntity(list: self.friendList[self.friendList.count - 1])
                                 currentFriendList.friends.append(peerInfo)
                                 let contextFriendList = UserFriendList(context: self.moc)
                                 contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriendList), encoding: .utf8)
                                 
                                 // Save to disk.
                                 try self.moc.save()
+                                                                
+                                self.friendList[self.friendList.count - 1].jsonData = contextFriendList.jsonData
                                 
-                                self.friendList[0].jsonData = contextFriendList.jsonData
-                                
-                                // Create the dictionary entry
-                                self.privateMessageModels[peerInfo.phone] = ChatModel()
-                                
-                                // Move to the tab with the messages.
-                                self.tabSelection = "Requests"
-                                
-                                // Start the chat
-                                self.inPrivateChatWith = peerInfo
-                                self.inPrivateChat = true
+                                self.instantiateChat(with: peerInfo)
                             } catch {
                                 print("[TabView] Adding to friend list failed: " + error.localizedDescription)
                             }
@@ -255,7 +259,7 @@ struct MainTabView: View {
                                  (b) create a new dictionary entry for this friend
                                  (b) move the user to the messaging screen.
                                  */
-                                let currentFriendList = getFriendListFromEntity(list: self.friendList[0])
+                                let currentFriendList = getFriendListFromEntity(list: self.friendList[self.friendList.count - 1])
                                 currentFriendList.friends.append(userInfo)
                                 let contextFriendList = UserFriendList(context: self.moc)
                                 contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriendList), encoding: .utf8)
