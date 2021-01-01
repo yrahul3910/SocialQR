@@ -196,6 +196,27 @@ struct MainTabView: View {
                             // If it's a request, then add it to our list of received requests.
                             self.receivedRequestPeers.addPeer(name: from.name, id: from.id)
                         } else if payload.type == "broadcast" {
+                            /*
+                             Handle the case of private message
+                             */
+                            if self.inPrivateChat.value {
+                                let phone = self.inPrivateChatWith.phone
+                                
+                                if (self.privateMessageModels.index(forKey: phone) == nil) {
+                                    self.privateMessageModels[phone] = ChatModel()
+                                }
+                                
+                                self.privateMessageModels[phone]!.arrayOfPositions.append(.left)
+                                self.privateMessageModels[phone]!.arrayOfSenders.append(self.inPrivateChatWith.name)
+                                self.privateMessageModels[phone]!.arrayOfMessages.append(payload.message)
+                                
+                                // Send acknowledgement
+                                let payload = CodablePayload(message: payload.message, type: "ack")
+                                self.transceiver.send(payload, to: [from])
+                                
+                                return
+                            }
+                            
                             /* If it's a broadcast message, use the information we have about
                              the broadcast messages being displayed to update the state of
                              whether or not there are unread broadcasts... */
@@ -203,7 +224,7 @@ struct MainTabView: View {
                                 self.hasUnreadBroadcasts = true
                             }
                             
-                            // ...and then update our chat model.
+                            // ... and then update our chat model.
                             self.broadcastChatModel.arrayOfPositions.append(BubblePosition.left)
                             self.broadcastChatModel.arrayOfSenders.append(String(from.name.split(separator: "'")[0]))
                             self.broadcastChatModel.arrayOfMessages.append(payload.message)
@@ -239,7 +260,7 @@ struct MainTabView: View {
                                 
                                 // Save to disk.
                                 try self.moc.save()
-                                                                
+                                
                                 self.friendList[self.friendList.count - 1].jsonData = contextFriendList.jsonData
                                 
                                 self.instantiateChat(with: peerInfo)
