@@ -29,7 +29,7 @@ struct MainTabView: View {
     private let decoder = JSONDecoder()
     
     // Are we in a PM?
-    @State var inPrivateChat: Bool = false
+    @ObservedObject var inPrivateChat: ObservableBool = ObservableBool()
     
     // Who are we in a PM with?
     @State var inPrivateChatWith: Friend = nullFriend
@@ -69,14 +69,15 @@ struct MainTabView: View {
     
     func instantiateChat(with peerInfo: Friend) {
         // Create the dictionary entry
-        self.privateMessageModels[peerInfo.phone] = ChatModel()
-        
-        // Move to the tab with the messages.
-        self.tabSelection = "Requests"
+        if !self.privateMessageModels.contains(where: {key, value in
+            return key == peerInfo.phone
+        }) {
+            self.privateMessageModels[peerInfo.phone] = ChatModel()
+        }
         
         // Start the chat
         self.inPrivateChatWith = peerInfo
-        self.inPrivateChat = true
+        self.inPrivateChat.setTrue()        
     }
     
     /* Function passed down to NearbyView to update us on whether or not
@@ -132,11 +133,12 @@ struct MainTabView: View {
     var body: some View {
         if systemState.isEmpty {
             FirstRunView()
-        } else {
+        }
+        else {
             ZStack {
                 TabView(selection: $tabSelection) {
                     RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[friendList.count - 1]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
-                                 currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat, transceiver: self.transceiver)
+                                 currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat.value, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
                             Text("Requests (\( self.receivedRequestPeers.peers.count))")
@@ -265,9 +267,7 @@ struct MainTabView: View {
                                 contextFriendList.jsonData = String(data: try JSONEncoder().encode(currentFriendList), encoding: .utf8)
                                 
                                 self.saveDetails()
-                                self.privateMessageModels[userInfo.phone] = ChatModel()
-                                self.inPrivateChatWith = userInfo
-                                self.inPrivateChat = true
+                                self.instantiateChat(with: userInfo)
                             } catch {
                                 print("[TabView] Failed to decode payload: " + error.localizedDescription)
                             }
@@ -283,7 +283,9 @@ struct MainTabView: View {
                 .frame(width: 200, height: 60)
                 .background(Color(red: 0.85, green: 0.8, blue: 0.95))
                 .cornerRadius(30.0)
-            }
+            }.sheet(isPresented: self.$inPrivateChat.value, content: {
+                PrivateMessagingView(model: self.privateMessageModels[self.inPrivateChatWith.phone] ?? ChatModel(), transceiver: self.transceiver, friendInfo: self.inPrivateChatWith)
+            })
         }
     }
 }

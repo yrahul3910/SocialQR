@@ -10,7 +10,7 @@ import CoreData
 
 // From https://stackoverflow.com/a/62067616
 class ObservableBool: ObservableObject {
-    @Published var value: Bool = true
+    @Published var value: Bool = false
     
     func setTrue() {
         self.value = true

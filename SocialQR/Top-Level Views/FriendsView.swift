@@ -48,7 +48,6 @@ struct FriendsView: View {
     
     var body: some View {
         let friendList = try! JSONDecoder().decode(FriendList.self, from: (self.friends.jsonData!.data(using: .utf8))!)
-        print(friendList.friends)
         
         return NavigationView {
             ScrollView {
