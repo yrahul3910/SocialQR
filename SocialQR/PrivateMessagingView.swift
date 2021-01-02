@@ -7,8 +7,8 @@ import MultipeerKit
 struct PrivateMessagingView: View {
     @ObservedObject var model: ChatModel
     var transceiver: MultipeerTransceiver
+    var ownPhoneNo: String
     @State var friendInfo: Friend
-    @State var gotAck: Bool = true
     
     var body: some View {
         GeometryReader { geo in
@@ -57,7 +57,9 @@ struct PrivateMessagingView: View {
                             // TODO: Show name of sender
                             model.arrayOfMessages.append(model.text)
                             
-                            let payload = CodablePayload(message: model.text, type: "broadcast")
+                            let payload = CodablePayload(
+                                message: self.ownPhoneNo + "|" + model.text,
+                                type: "message")
                             self.transceiver.broadcast(payload)
                             
                             model.text = ""

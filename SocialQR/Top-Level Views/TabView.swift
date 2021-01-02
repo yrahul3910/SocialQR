@@ -195,28 +195,30 @@ struct MainTabView: View {
                         if payload.type == "request" {
                             // If it's a request, then add it to our list of received requests.
                             self.receivedRequestPeers.addPeer(name: from.name, id: from.id)
-                        } else if payload.type == "broadcast" {
-                            /*
-                             Handle the case of private message
-                             */
-                            if self.inPrivateChat.value {
-                                let phone = self.inPrivateChatWith.phone
-                                
-                                if (self.privateMessageModels.index(forKey: phone) == nil) {
-                                    self.privateMessageModels[phone] = ChatModel()
-                                }
-                                
-                                self.privateMessageModels[phone]!.arrayOfPositions.append(.left)
-                                self.privateMessageModels[phone]!.arrayOfSenders.append(self.inPrivateChatWith.name)
-                                self.privateMessageModels[phone]!.arrayOfMessages.append(payload.message)
-                                
-                                // Send acknowledgement
-                                let payload = CodablePayload(message: payload.message, type: "ack")
-                                self.transceiver.send(payload, to: [from])
-                                
-                                return
+                        } else if payload.type == "message" {
+                            // First, get the phone number, which we send in the message.
+                            let message = payload.message
+                            let splits = message.split(maxSplits: 1, omittingEmptySubsequences: true, whereSeparator: { char in
+                                return char == "|"
+                            })
+                            let phone = String(splits[0])
+                            let actualMessage = String(splits[1])
+                            
+                            if (self.privateMessageModels.index(forKey: phone) == nil) {
+                                self.privateMessageModels[phone] = ChatModel()
                             }
                             
+                            self.privateMessageModels[phone]!.arrayOfPositions.append(.left)
+                            self.privateMessageModels[phone]!.arrayOfSenders.append(self.inPrivateChatWith.name)
+                            self.privateMessageModels[phone]!.arrayOfMessages.append(actualMessage)
+                            
+                            // Send acknowledgement
+                            let payload = CodablePayload(message: payload.message, type: "ack")
+                            self.transceiver.send(payload, to: [from])
+                        } else if payload.type == "ack" {
+                            // Handle acknowledgements
+                            // TODO: Keep track of messages we have recieved ack for.
+                        } else if payload.type == "broadcast" {
                             /* If it's a broadcast message, use the information we have about
                              the broadcast messages being displayed to update the state of
                              whether or not there are unread broadcasts... */
@@ -305,7 +307,7 @@ struct MainTabView: View {
                 .background(Color(red: 0.85, green: 0.8, blue: 0.95))
                 .cornerRadius(30.0)
             }.sheet(isPresented: self.$inPrivateChat.value, content: {
-                PrivateMessagingView(model: self.privateMessageModels[self.inPrivateChatWith.phone] ?? ChatModel(), transceiver: self.transceiver, friendInfo: self.inPrivateChatWith)
+                PrivateMessagingView(model: self.privateMessageModels[self.inPrivateChatWith.phone] ?? ChatModel(), transceiver: self.transceiver, ownPhoneNo: self.user.last!.phone!, friendInfo: self.inPrivateChatWith)
             })
         }
     }
