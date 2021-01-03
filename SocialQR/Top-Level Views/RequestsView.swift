@@ -5,6 +5,7 @@ struct RequestsView: View {
     @ObservedObject var peerList: PeerList
     @State var friendsList: FriendList
     var reqAcceptFunc: (Peer) -> Void
+    var ownPhoneNo: String
     @Binding var inChatWith: Friend
     @State var currentChatModel: ChatModel? = ChatModel()
     @Binding var inChat: Bool
@@ -18,7 +19,7 @@ struct RequestsView: View {
                         Text(verbatim: peerList.peers[index].name)
                         Spacer()
                         NavigationLink(
-                            destination: PrivateMessagingView(model: currentChatModel ?? ChatModel(), transceiver: transceiver, friendInfo: inChatWith),
+                            destination: PrivateMessagingView(model: currentChatModel ?? ChatModel(), transceiver: transceiver, ownPhoneNo: self.ownPhoneNo, friendInfo: inChatWith),
                             isActive: $inChat) { EmptyView() }
                         Button(action: {
                             // Request accepted, let the parent handle it.

@@ -11,6 +11,7 @@ class ChatModel: ObservableObject {
     @Published var arrayOfMessages : [String] = []
     @Published var arrayOfSenders : [String] = []
     @Published var arrayOfPositions : [BubblePosition] = []
+    @Published var arrayOfAcks : [Bool] = []
     @Published var position = BubblePosition.right
 }
 

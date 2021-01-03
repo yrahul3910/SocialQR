@@ -137,7 +137,7 @@ struct MainTabView: View {
         else {
             ZStack {
                 TabView(selection: $tabSelection) {
-                    RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[friendList.count - 1]), reqAcceptFunc: self.acceptRequest, inChatWith: self.$inPrivateChatWith,
+                    RequestsView(peerList: receivedRequestPeers, friendsList: getFriendListFromEntity(list: friendList[friendList.count - 1]), reqAcceptFunc: self.acceptRequest, ownPhoneNo: self.user.last!.phone!, inChatWith: self.$inPrivateChatWith,
                                  currentChatModel: self.privateMessageModels[self.inPrivateChatWith.phone], inChat: self.$inPrivateChat.value, transceiver: self.transceiver)
                         .tabItem {
                             Image(systemName: "person.badge.plus.fill")
@@ -213,11 +213,40 @@ struct MainTabView: View {
                             self.privateMessageModels[phone]!.arrayOfMessages.append(actualMessage)
                             
                             // Send acknowledgement
-                            let payload = CodablePayload(message: payload.message, type: "ack")
+                            let payload = CodablePayload(message: self.user.last!.phone! + "|" + actualMessage, type: "ack")
                             self.transceiver.send(payload, to: [from])
                         } else if payload.type == "ack" {
                             // Handle acknowledgements
-                            // TODO: Keep track of messages we have recieved ack for.
+                            let message = payload.message
+                            let splits = message.split(maxSplits: 1, omittingEmptySubsequences: true, whereSeparator: { char in
+                                return char == "|"
+                            })
+                            let phone = String(splits[0])
+                            let actualMessage = String(splits[1])
+                            
+                            // Now find this message in the chat model
+                            var ownMessageCount = 0
+                            for idx in self.privateMessageModels[phone]!.arrayOfPositions.indices {
+                                if self.privateMessageModels[phone]!.arrayOfPositions[idx] == .right {
+                                    ownMessageCount += 1
+                                    if (actualMessage == self.privateMessageModels[phone]!.arrayOfMessages[idx]) {
+                                        // This is the ack'd message
+                                        if self.privateMessageModels[phone]!.arrayOfAcks.count < ownMessageCount - 1 {
+                                            // We have a possible dropped message
+                                            self.showPopup(text: "Your message may not have been delivered.")
+                                            
+                                            // We need an extra element so this condition is not always triggered
+                                            self.privateMessageModels[phone]!.arrayOfAcks.append(false)
+                                            self.privateMessageModels[phone]!.arrayOfAcks.append(true)
+                                        } else {
+                                            self.privateMessageModels[phone]!.arrayOfAcks.append(true)
+                                        }
+                                        
+                                        // There's no need to search any further.
+                                        break
+                                    }
+                                }
+                            }
                         } else if payload.type == "broadcast" {
                             /* If it's a broadcast message, use the information we have about
                              the broadcast messages being displayed to update the state of
