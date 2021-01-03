@@ -328,13 +328,14 @@ struct MainTabView: View {
                 }
             }.onDisappear(perform: {
                 self.saveDetails()
-            }).popup(isPresented: $showingPopup, autohideIn: 2) {
-                HStack {
-                    Text(self.popupText)
-                }
-                .frame(width: 200, height: 60)
-                .background(Color(red: 0.85, green: 0.8, blue: 0.95))
-                .cornerRadius(30.0)
+            }).popup(isPresented: $showingPopup, type: .floater(verticalPadding: 30), autohideIn: 2) {
+                Text(self.popupText)
+                    .bold()
+                    .padding()
+                    .frame(width: 200, height: 60)
+                    .background(Color.white)
+                    .cornerRadius(30.0)
+                    .shadow(radius: 2)
             }.sheet(isPresented: self.$inPrivateChat.value, content: {
                 PrivateMessagingView(model: self.privateMessageModels[self.inPrivateChatWith.phone] ?? ChatModel(), transceiver: self.transceiver, ownPhoneNo: self.user.last!.phone!, friendInfo: self.inPrivateChatWith)
             })
