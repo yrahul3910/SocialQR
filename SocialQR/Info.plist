@@ -2,18 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_MKSVC._tcp</string>
-	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>We use the local network to discover other people nearby.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>We require use of the camera to scan QR codes.</string>
-	<key>UIApplicationExitsOnSuspend</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -23,19 +11,31 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>NearConnect</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_MKSVC._tcp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We require use of the camera to scan QR codes.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>We use the local network to discover other people nearby.</string>
+	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>

@@ -118,7 +118,7 @@ struct MainTabView: View {
         
         // Peer in range, so send request for info, sending our own info at the same time.
         do {
-            let json = try JSONEncoder().encode(getFriendFromUserInfo(user: self.user[self.friendList.count - 1]))
+            let json = try JSONEncoder().encode(getFriendFromUserInfo(user: self.user.last!))
             let jsonString = String(data: json, encoding: .utf8)!
             let payload = CodablePayload(message: jsonString, type: "needs-info")
             let to: MultipeerKit.Peer = self.transceiver.availablePeers.first(where: { mpkPeer in
@@ -271,8 +271,8 @@ struct MainTabView: View {
                                 print("[TabView] Could not encode user info: " + error.localizedDescription)
                             }
                             
-                            let payload = CodablePayload(message: json ?? "", type: "info")
-                            self.transceiver.send(payload, to: [from])
+                            let sentPayload = CodablePayload(message: json ?? "", type: "info")
+                            self.transceiver.send(sentPayload, to: [from])
                             
                             /* We are now also friends, so we need to:
                              (a) add the user to our friend list

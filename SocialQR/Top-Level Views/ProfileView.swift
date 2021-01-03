@@ -37,7 +37,11 @@ struct ProfileView: View {
     
     var body: some View {
         var friendCount: Int = 0
-        let decoder = try! NSKeyedUnarchiver(forReadingFrom: self.user[0].img!)
+        let newUserEncoder = NSKeyedArchiver(requiringSecureCoding: false)
+        UIImage(systemName: "person.fill")!.encode(with: newUserEncoder)
+        newUserEncoder.finishEncoding()
+        
+        let decoder = try! NSKeyedUnarchiver(forReadingFrom: self.user[0].img ?? newUserEncoder.encodedData)
         
         do {
             friendCount = try JSONDecoder().decode(FriendList.self, from: self.friends.jsonData!.data(using: .utf8)!).friends.count
