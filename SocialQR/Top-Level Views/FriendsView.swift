@@ -1,5 +1,6 @@
 import SwiftUI
 import CodeScanner
+import AVFoundation
 
 class FriendList: Codable, ObservableObject {
     var friends: Array<Friend> = []
@@ -25,6 +26,9 @@ struct FriendsView: View {
     
     // Handle QR code scanning
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
+        // Quick vibration for tactile feedback
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
         self.isShowingCamera = false
         
         switch result {
