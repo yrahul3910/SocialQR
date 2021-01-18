@@ -31,6 +31,9 @@ struct MainTabView: View {
     // Are we in a PM?
     @ObservedObject var inPrivateChat: ObservableBool = ObservableBool()
     
+    // Our notification manager
+    @ObservedObject var notificationManager = NotificationManager()
+    
     // Who are we in a PM with?
     @State var inPrivateChatWith: Friend = nullFriend
     
@@ -194,7 +197,7 @@ struct MainTabView: View {
                         // ...check the type of payload.
                         if payload.type == "request" {
                             // If it's a request, then add it to our list of received requests.
-                            self.receivedRequestPeers.addPeer(name: from.name, id: from.id)
+                            self.receivedRequestPeers.addPeer(name: payload.message, id: from.id)
                         } else if payload.type == "message" {
                             // First, get the phone number, which we send in the message.
                             let message = payload.message

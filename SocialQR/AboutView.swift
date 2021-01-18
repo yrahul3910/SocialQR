@@ -35,7 +35,17 @@ struct AboutView: View {
                     Link("r.yedida@pm.me", destination: URL(string: "mailto://r.yedida@pm.me")!)
                         .foregroundColor(.blue)
                 }
+                HStack {
+                    Text("Report an issue")
+                    Spacer()
+                    Link("GitHub", destination: URL(string: "https://github.com/yrahul3910/SocialQR/issues")!)
+                        .foregroundColor(.blue)
+                }
             }
+            Spacer()
+            Text("NearConnect is free and open-source software, and does not collect any data about you.")
+                .font(.footnote)
+                .padding()
         }
     }
 }

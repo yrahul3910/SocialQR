@@ -34,7 +34,7 @@ struct FriendView: View {
                         Text(verbatim: self.phone)
                             .foregroundColor(.green)
                     }
-                }
+                }.padding()
                 Spacer()
             }.padding()
         }
