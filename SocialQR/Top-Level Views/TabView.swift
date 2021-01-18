@@ -4,6 +4,7 @@ import UserNotifications
 
 struct MainTabView: View {
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.colorScheme) var colorScheme
     @FetchRequest(entity: UserInfo.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \UserInfo.name, ascending: true)
     ])
@@ -336,7 +337,6 @@ struct MainTabView: View {
                     .bold()
                     .padding()
                     .frame(width: 200, height: 60)
-                    .background(Color.white)
                     .cornerRadius(30.0)
                     .shadow(radius: 2)
             }.sheet(isPresented: self.$inPrivateChat.value, content: {
