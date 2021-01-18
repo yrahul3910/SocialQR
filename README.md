@@ -2,7 +2,9 @@
 
 [**Official website**](https://nearconnect.us)  
 
-![Get it on the App Store](https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png)
+<a href="https://apps.apple.com/us/app/nearconnect/id1547157546">
+  <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" alt="Get it on the App Store!" style="width: 100px" />
+</a>
 
 ## Connect to people nearby with ease!
 
