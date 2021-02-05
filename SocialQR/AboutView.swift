@@ -41,6 +41,12 @@ struct AboutView: View {
                     Link("GitHub", destination: URL(string: "https://github.com/yrahul3910/SocialQR/issues")!)
                         .foregroundColor(.blue)
                 }
+                HStack {
+                    Text("Visit the website")
+                    Spacer()
+                    Link("Website", destination: URL(string: "https://nearconnect.us")!)
+                        .foregroundColor(.blue)
+                }
             }
             Spacer()
             Text("NearConnect is free and open-source software, and does not collect any data about you.")
