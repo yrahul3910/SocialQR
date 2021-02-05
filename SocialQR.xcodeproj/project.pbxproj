@@ -121,6 +121,7 @@
 		05A9E63F25B64CB4007B8156 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		05BAF2DB259D9A01000887A9 /* .git */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .git; sourceTree = SOURCE_ROOT; };
 		05BAF2E3259D9F29000887A9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		05CA4D8F25CCCFE100D76FE4 /* CHANGES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGES.md; sourceTree = "<group>"; };
 		05DFF98525B9609500E3F0BB /* NearConnect for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NearConnect for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DFF98725B9609500E3F0BB /* NearConnect_for_MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearConnect_for_MacApp.swift; sourceTree = "<group>"; };
 		05DFF98B25B9609600E3F0BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 		050732C72563539F003F0746 = {
 			isa = PBXGroup;
 			children = (
+				05CA4D8F25CCCFE100D76FE4 /* CHANGES.md */,
 				05F033F62599595D0080D009 /* UserInfo+CoreDataClass.swift */,
 				05F033F72599595D0080D009 /* UserInfo+CoreDataProperties.swift */,
 				05F033E725992ABD0080D009 /* SystemState+CoreDataClass.swift */,

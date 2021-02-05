@@ -1,6 +1,6 @@
 # NearConnect
 
-[**Official website**](https://nearconnect.us)  
+[**Official website**](https://nearconnect.us) 
 
 <a href="https://apps.apple.com/us/app/nearconnect/id1547157546">
   <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred_2x.png" alt="Get it on the App Store!" style="width: 100px" />
@@ -9,6 +9,10 @@
 ## Connect to people nearby with ease!
 
 SocialQR (the internal name) is an app designed to help people grow their social networks by displaying nearby people who also have the app installed. A chat lobby is present where everyone can chat in a common room, but users have the option of adding friends for private messaging. Alternatively, a QR code can be scanned as a method of consent for friend requests. These chats are only short-lived, i.e., they only work so long as you are in close proximity; however, the friend list is persistent. This design allows for a serverless, privacy-first architecture. Because the friend list will include the friend's phone number and possibly other contact information, the goal is for users to continue their conversations via iMessage (which is installed on most iPhones).
+
+## Change Log
+
+For the full change log, see [CHANGES.md](CHANGES.md)
 
 ## Contributing
 

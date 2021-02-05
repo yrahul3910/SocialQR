@@ -6,12 +6,33 @@
 //
 
 import SwiftUI
+import Contacts
 
 struct FriendView: View {
     @State var img: UIImage?
     @State var name: String
     @State var phone: String
     @State var chatFn: (Friend) -> ()
+    
+    func addToContacts() {
+        let newContact = CNMutableContact()
+        newContact.givenName = String(name.split(separator: " ")[0])
+        
+        if (name.split(separator: " ").count > 1) {
+            newContact.familyName = String(name.split(separator: " ")[1])
+        }
+
+        // Save the contact
+        let saveRequest = CNSaveRequest()
+        saveRequest.add(newContact, toContainerWithIdentifier: nil)
+
+        let store = CNContactStore()
+        do {
+            try store.execute(saveRequest)
+        } catch {
+            print("Saving contact failed, error: \(error)")
+        }
+    }
     
     var body: some View {
         Button(action: {
@@ -39,5 +60,8 @@ struct FriendView: View {
             }.padding()
         }
         Spacer()
+        Button(action: self.addToContacts, label: {
+            Image(systemName: "person.crop.circle.fill.badge")
+        })
     }
 }
