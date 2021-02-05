@@ -185,6 +185,7 @@ struct MainTabView: View {
                     // If peer added, add to our list.
                     transceiver.peerAdded = { peer in
                         self.peers.addPeer(name: peer.name, id: peer.id)
+                        notificationManager.sendNotification(title: "New neighbors!", subtitle: nil, body: "Someone new is near you. Say hi!", launchIn: 1.0)
                     }
                     
                     // ...and if peer leaves, remove from both our lists.

@@ -37,6 +37,13 @@
 		05BAF2E4259D9F29000887A9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAF2E3259D9F29000887A9 /* AboutView.swift */; };
 		05BE79ED258761F30024422A /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79EC258761F30024422A /* iPhoneNumberField */; };
 		05BE79F32587654F0024422A /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 05BE79F22587654F0024422A /* ImagePickerView */; };
+		05DFF98825B9609500E3F0BB /* NearConnect_for_MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFF98725B9609500E3F0BB /* NearConnect_for_MacApp.swift */; };
+		05DFF98C25B9609600E3F0BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DFF98B25B9609600E3F0BB /* Assets.xcassets */; };
+		05DFF98F25B9609600E3F0BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DFF98E25B9609600E3F0BB /* Preview Assets.xcassets */; };
+		05DFF99425B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05DFF99225B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodeld */; };
+		05DFF9A025B9609700E3F0BB /* NearConnect_for_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFF99F25B9609700E3F0BB /* NearConnect_for_MacTests.swift */; };
+		05DFF9AB25B9609700E3F0BB /* NearConnect_for_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFF9AA25B9609700E3F0BB /* NearConnect_for_MacUITests.swift */; };
+		05DFF9CA25B9623B00E3F0BB /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DFF9C925B9623B00E3F0BB /* MainTabView.swift */; };
 		05E5466E2598305400FCF813 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05E5466C2598305400FCF813 /* UserModel.xcdatamodeld */; };
 		05F033B925991AAF0080D009 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F033B825991AAF0080D009 /* Mapper.swift */; };
 		05F033CC25991CD70080D009 /* UserFriendList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F033CA25991CD70080D009 /* UserFriendList+CoreDataClass.swift */; };
@@ -62,6 +69,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 050732CF2563539F003F0746;
 			remoteInfo = SocialQR;
+		};
+		05DFF99C25B9609700E3F0BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050732C82563539F003F0746 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05DFF98425B9609500E3F0BB;
+			remoteInfo = "NearConnect for Mac";
+		};
+		05DFF9A725B9609700E3F0BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050732C82563539F003F0746 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05DFF98425B9609500E3F0BB;
+			remoteInfo = "NearConnect for Mac";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -100,6 +121,20 @@
 		05A9E63F25B64CB4007B8156 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		05BAF2DB259D9A01000887A9 /* .git */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .git; sourceTree = SOURCE_ROOT; };
 		05BAF2E3259D9F29000887A9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		05DFF98525B9609500E3F0BB /* NearConnect for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NearConnect for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DFF98725B9609500E3F0BB /* NearConnect_for_MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearConnect_for_MacApp.swift; sourceTree = "<group>"; };
+		05DFF98B25B9609600E3F0BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05DFF98E25B9609600E3F0BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		05DFF99325B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NearConnect_for_Mac.xcdatamodel; sourceTree = "<group>"; };
+		05DFF99525B9609600E3F0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DFF99625B9609600E3F0BB /* NearConnect_for_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NearConnect_for_Mac.entitlements; sourceTree = "<group>"; };
+		05DFF99B25B9609700E3F0BB /* NearConnect for MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NearConnect for MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DFF99F25B9609700E3F0BB /* NearConnect_for_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearConnect_for_MacTests.swift; sourceTree = "<group>"; };
+		05DFF9A125B9609700E3F0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DFF9A625B9609700E3F0BB /* NearConnect for MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NearConnect for MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DFF9AA25B9609700E3F0BB /* NearConnect_for_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearConnect_for_MacUITests.swift; sourceTree = "<group>"; };
+		05DFF9AC25B9609700E3F0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DFF9C925B9623B00E3F0BB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		05E5466D2598305400FCF813 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		05F033B825991AAF0080D009 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		05F033CA25991CD70080D009 /* UserFriendList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFriendList+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -137,6 +172,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05DFF98225B9609500E3F0BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF99825B9609700E3F0BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF9A325B9609700E3F0BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -155,6 +211,9 @@
 				050732D22563539F003F0746 /* SocialQR */,
 				050732E4256353A1003F0746 /* SocialQRTests */,
 				050732EF256353A1003F0746 /* SocialQRUITests */,
+				05DFF98625B9609500E3F0BB /* NearConnect for Mac */,
+				05DFF99E25B9609700E3F0BB /* NearConnect for MacTests */,
+				05DFF9A925B9609700E3F0BB /* NearConnect for MacUITests */,
 				050732D12563539F003F0746 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,6 +224,9 @@
 				050732D02563539F003F0746 /* SocialQR.app */,
 				050732E1256353A1003F0746 /* SocialQRTests.xctest */,
 				050732EC256353A1003F0746 /* SocialQRUITests.xctest */,
+				05DFF98525B9609500E3F0BB /* NearConnect for Mac.app */,
+				05DFF99B25B9609700E3F0BB /* NearConnect for MacTests.xctest */,
+				05DFF9A625B9609700E3F0BB /* NearConnect for MacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,6 +307,54 @@
 			path = "Utility classes";
 			sourceTree = "<group>";
 		};
+		05DFF98625B9609500E3F0BB /* NearConnect for Mac */ = {
+			isa = PBXGroup;
+			children = (
+				05DFF9C825B9622B00E3F0BB /* Top-Level Views */,
+				05DFF98725B9609500E3F0BB /* NearConnect_for_MacApp.swift */,
+				05DFF98B25B9609600E3F0BB /* Assets.xcassets */,
+				05DFF99525B9609600E3F0BB /* Info.plist */,
+				05DFF99625B9609600E3F0BB /* NearConnect_for_Mac.entitlements */,
+				05DFF99225B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodeld */,
+				05DFF98D25B9609600E3F0BB /* Preview Content */,
+			);
+			path = "NearConnect for Mac";
+			sourceTree = "<group>";
+		};
+		05DFF98D25B9609600E3F0BB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				05DFF98E25B9609600E3F0BB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		05DFF99E25B9609700E3F0BB /* NearConnect for MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				05DFF99F25B9609700E3F0BB /* NearConnect_for_MacTests.swift */,
+				05DFF9A125B9609700E3F0BB /* Info.plist */,
+			);
+			path = "NearConnect for MacTests";
+			sourceTree = "<group>";
+		};
+		05DFF9A925B9609700E3F0BB /* NearConnect for MacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				05DFF9AA25B9609700E3F0BB /* NearConnect_for_MacUITests.swift */,
+				05DFF9AC25B9609700E3F0BB /* Info.plist */,
+			);
+			path = "NearConnect for MacUITests";
+			sourceTree = "<group>";
+		};
+		05DFF9C825B9622B00E3F0BB /* Top-Level Views */ = {
+			isa = PBXGroup;
+			children = (
+				05DFF9C925B9623B00E3F0BB /* MainTabView.swift */,
+			);
+			path = "Top-Level Views";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,13 +417,66 @@
 			productReference = 050732EC256353A1003F0746 /* SocialQRUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		05DFF98425B9609500E3F0BB /* NearConnect for Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DFF9AD25B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for Mac" */;
+			buildPhases = (
+				05DFF98125B9609500E3F0BB /* Sources */,
+				05DFF98225B9609500E3F0BB /* Frameworks */,
+				05DFF98325B9609500E3F0BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NearConnect for Mac";
+			productName = "NearConnect for Mac";
+			productReference = 05DFF98525B9609500E3F0BB /* NearConnect for Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		05DFF99A25B9609700E3F0BB /* NearConnect for MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DFF9B025B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for MacTests" */;
+			buildPhases = (
+				05DFF99725B9609700E3F0BB /* Sources */,
+				05DFF99825B9609700E3F0BB /* Frameworks */,
+				05DFF99925B9609700E3F0BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05DFF99D25B9609700E3F0BB /* PBXTargetDependency */,
+			);
+			name = "NearConnect for MacTests";
+			productName = "NearConnect for MacTests";
+			productReference = 05DFF99B25B9609700E3F0BB /* NearConnect for MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		05DFF9A525B9609700E3F0BB /* NearConnect for MacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DFF9B325B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for MacUITests" */;
+			buildPhases = (
+				05DFF9A225B9609700E3F0BB /* Sources */,
+				05DFF9A325B9609700E3F0BB /* Frameworks */,
+				05DFF9A425B9609700E3F0BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05DFF9A825B9609700E3F0BB /* PBXTargetDependency */,
+			);
+			name = "NearConnect for MacUITests";
+			productName = "NearConnect for MacUITests";
+			productReference = 05DFF9A625B9609700E3F0BB /* NearConnect for MacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		050732C82563539F003F0746 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					050732CF2563539F003F0746 = {
@@ -327,6 +490,17 @@
 					050732EB256353A1003F0746 = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 050732CF2563539F003F0746;
+					};
+					05DFF98425B9609500E3F0BB = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					05DFF99A25B9609700E3F0BB = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 05DFF98425B9609500E3F0BB;
+					};
+					05DFF9A525B9609700E3F0BB = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 05DFF98425B9609500E3F0BB;
 					};
 				};
 			};
@@ -352,6 +526,9 @@
 				050732CF2563539F003F0746 /* SocialQR */,
 				050732E0256353A1003F0746 /* SocialQRTests */,
 				050732EB256353A1003F0746 /* SocialQRUITests */,
+				05DFF98425B9609500E3F0BB /* NearConnect for Mac */,
+				05DFF99A25B9609700E3F0BB /* NearConnect for MacTests */,
+				05DFF9A525B9609700E3F0BB /* NearConnect for MacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +553,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		050732EA256353A1003F0746 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF98325B9609500E3F0BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DFF98F25B9609600E3F0BB /* Preview Assets.xcassets in Resources */,
+				05DFF98C25B9609600E3F0BB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF99925B9609700E3F0BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF9A425B9609700E3F0BB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -437,6 +637,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05DFF98125B9609500E3F0BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DFF99425B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodeld in Sources */,
+				05DFF98825B9609500E3F0BB /* NearConnect_for_MacApp.swift in Sources */,
+				05DFF9CA25B9623B00E3F0BB /* MainTabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF99725B9609700E3F0BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DFF9A025B9609700E3F0BB /* NearConnect_for_MacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DFF9A225B9609700E3F0BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DFF9AB25B9609700E3F0BB /* NearConnect_for_MacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -449,6 +675,16 @@
 			isa = PBXTargetDependency;
 			target = 050732CF2563539F003F0746 /* SocialQR */;
 			targetProxy = 050732ED256353A1003F0746 /* PBXContainerItemProxy */;
+		};
+		05DFF99D25B9609700E3F0BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05DFF98425B9609500E3F0BB /* NearConnect for Mac */;
+			targetProxy = 05DFF99C25B9609700E3F0BB /* PBXContainerItemProxy */;
+		};
+		05DFF9A825B9609700E3F0BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05DFF98425B9609500E3F0BB /* NearConnect for Mac */;
+			targetProxy = 05DFF9A725B9609700E3F0BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -506,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -565,7 +801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -716,6 +952,149 @@
 			};
 			name = Release;
 		};
+		05DFF9AE25B9609700E3F0BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NearConnect for Mac/NearConnect_for_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"NearConnect for Mac/Preview Content\"";
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "NearConnect for Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05DFF9AF25B9609700E3F0BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NearConnect for Mac/NearConnect_for_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"NearConnect for Mac/Preview Content\"";
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "NearConnect for Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		05DFF9B125B9609700E3F0BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				INFOPLIST_FILE = "NearConnect for MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearConnect for Mac.app/Contents/MacOS/NearConnect for Mac";
+			};
+			name = Debug;
+		};
+		05DFF9B225B9609700E3F0BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				INFOPLIST_FILE = "NearConnect for MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearConnect for Mac.app/Contents/MacOS/NearConnect for Mac";
+			};
+			name = Release;
+		};
+		05DFF9B425B9609700E3F0BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				INFOPLIST_FILE = "NearConnect for MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "NearConnect for Mac";
+			};
+			name = Debug;
+		};
+		05DFF9B525B9609700E3F0BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7CMVH392CF;
+				INFOPLIST_FILE = "NearConnect for MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NearConnect-for-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "NearConnect for Mac";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -751,6 +1130,33 @@
 			buildConfigurations = (
 				050732FC256353A1003F0746 /* Debug */,
 				050732FD256353A1003F0746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DFF9AD25B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DFF9AE25B9609700E3F0BB /* Debug */,
+				05DFF9AF25B9609700E3F0BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DFF9B025B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DFF9B125B9609700E3F0BB /* Debug */,
+				05DFF9B225B9609700E3F0BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DFF9B325B9609700E3F0BB /* Build configuration list for PBXNativeTarget "NearConnect for MacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DFF9B425B9609700E3F0BB /* Debug */,
+				05DFF9B525B9609700E3F0BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -816,6 +1222,16 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		05DFF99225B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				05DFF99325B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodel */,
+			);
+			currentVersion = 05DFF99325B9609600E3F0BB /* NearConnect_for_Mac.xcdatamodel */;
+			path = NearConnect_for_Mac.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		05E5466C2598305400FCF813 /* UserModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

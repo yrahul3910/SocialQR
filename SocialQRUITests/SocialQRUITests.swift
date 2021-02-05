@@ -22,13 +22,48 @@ class SocialQRUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testFirstStartupUI() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
         // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        XCTAssertTrue(app.staticTexts["Welcome!"].exists)
+        XCTAssertTrue(app.textFields["Name"].exists)
+        XCTAssertTrue(app.textFields["Phone"].exists)
+        XCTAssertTrue(app.buttons["Continue!"].exists)
+        
+        XCTAssertFalse(app.staticTexts["Nearby"].exists)
+        XCTAssertFalse(app.staticTexts["Requests (0)"].exists)
+        XCTAssertFalse(app.staticTexts["Near Me"].exists)
+        XCTAssertFalse(app.staticTexts["Friends"].exists)
+        XCTAssertFalse(app.staticTexts["Profile"].exists)
+        XCTAssertFalse(app.staticTexts["Settings"].exists)
+    }
+    
+    func testStartupUI() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+
+        // Use recording to get started writing UI tests.
+
+        XCTAssertTrue(app.staticTexts["Welcome!"].exists)
+        XCTAssertTrue(app.textFields["Name"].exists)
+        XCTAssertTrue(app.textFields["Phone"].exists)
+        XCTAssertTrue(app.buttons["Continue!"].exists)
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("Russell")
+        app.textFields["Phone"].tap()
+        app.buttons["Continue!"].tap()
+        
+        XCTAssertFalse(app.staticTexts["Nearby"].exists)
+        XCTAssertFalse(app.staticTexts["Requests (0)"].exists)
+        XCTAssertFalse(app.staticTexts["Near Me"].exists)
+        XCTAssertFalse(app.staticTexts["Friends"].exists)
+        XCTAssertFalse(app.staticTexts["Profile"].exists)
+        XCTAssertFalse(app.staticTexts["Settings"].exists)
     }
 
     func testLaunchPerformance() throws {
