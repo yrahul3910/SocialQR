@@ -5,7 +5,7 @@ struct CodablePayload: Codable, Hashable {
     let type: String
 }
 
-struct Peer {
+struct Peer: Hashable {
     let name: String
     let id: String    
 }

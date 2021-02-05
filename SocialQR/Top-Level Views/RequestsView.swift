@@ -12,24 +12,26 @@ struct RequestsView: View {
     var transceiver: MultipeerTransceiver
     
     var body: some View {
+        let neighbors = Array(Set(peerList.peers))
+
         NavigationView {
             ScrollView {
-                ForEach(peerList.peers.indices, id: \.self, content: { [self] index in
+                ForEach(neighbors.indices, id: \.self, content: { [self] index in
                     HStack {
-                        Text(verbatim: peerList.peers[index].name)
+                        Text(verbatim: neighbors[index].name)
                         Spacer()
                         NavigationLink(
                             destination: PrivateMessagingView(model: currentChatModel ?? ChatModel(), transceiver: transceiver, ownPhoneNo: self.ownPhoneNo, friendInfo: inChatWith),
                             isActive: $inChat) { EmptyView() }
                         Button(action: {
                             // Request accepted, let the parent handle it.
-                            reqAcceptFunc(peerList.peers[index])
+                            reqAcceptFunc(neighbors[index])
                         }, label: {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
                         })
                         Button(action: {
-                            self.peerList.removePeer(id: peerList.peers[index].id)
+                            self.peerList.removePeer(id: neighbors[index].id)
                         }, label: {
                             Image(systemName: "xmark")
                                 .foregroundColor(.red)
