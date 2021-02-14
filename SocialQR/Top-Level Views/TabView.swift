@@ -156,7 +156,7 @@ struct MainTabView: View {
                         }
                         .tag("Nearby")
                     
-                    FriendsView(friends: self.friendList[friendList.count - 1], chatFn: self.instantiateChat)
+                    FriendsView(friends: self.friendList[friendList.count - 1], chatFn: self.instantiateChat, popupFn: self.showPopup)
                         .tabItem {
                             Image(systemName: "heart.fill")
                             Text("Friends")

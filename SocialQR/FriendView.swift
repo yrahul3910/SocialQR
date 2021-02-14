@@ -13,6 +13,7 @@ struct FriendView: View {
     @State var name: String
     @State var phone: String
     @State var chatFn: (Friend) -> ()
+    var popupFn: (String) -> ()
     
     func addToContacts() {
         let newContact = CNMutableContact()
@@ -29,6 +30,7 @@ struct FriendView: View {
         let store = CNContactStore()
         do {
             try store.execute(saveRequest)
+            self.popupFn("Contact \(self.name) added!")
         } catch {
             print("Saving contact failed, error: \(error)")
         }
@@ -47,7 +49,8 @@ struct FriendView: View {
                         .font(.headline)
                         .bold()
                     Button(action: {
-                        let formattedString = "sms:\(self.phone)&body="
+                        let formattedPhone = self.phone.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "-").replacingOccurrences(of: " ", with: "")
+                        let formattedString = "sms:\(formattedPhone)"
                         let url: NSURL = URL(string: formattedString)! as NSURL
                     
                         UIApplication.shared.open(url as URL)
@@ -57,11 +60,11 @@ struct FriendView: View {
                     }
                 }.padding()
                 Spacer()
+                Button(action: self.addToContacts, label: {
+                    Image(systemName: "person.crop.circle.fill.badge.plus")
+                })
             }.padding()
         }
         Spacer()
-        Button(action: self.addToContacts, label: {
-            Image(systemName: "person.crop.circle.fill.badge")
-        })
     }
 }

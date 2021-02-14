@@ -14,6 +14,7 @@ struct FriendsView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var friends: UserFriendList
     @State var chatFn: (Friend) -> ()
+    var popupFn: (String) -> ()
     
     @State private var isShowingCamera = false
     private let simulatedData = try! String(data: JSONEncoder().encode(
@@ -60,7 +61,7 @@ struct FriendsView: View {
                         FriendView(img: UIImage(data: (friendList.friends[index].img ?? "".data(using: .utf8))!),
                                    name: friendList.friends[index].name,
                                    phone: friendList.friends[index].phone,
-                                   chatFn: self.chatFn)
+                                   chatFn: self.chatFn, popupFn: self.popupFn)
                     }
                 }
             }
